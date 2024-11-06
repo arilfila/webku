@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian</title>
+    <style>
+        /* Mengatur dasar untuk body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Menyusun konten secara vertikal */
+            height: 100vh;
+        }
+
+        /* Header untuk Nama Perusahaan */
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        /* Kontainer utama form */
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            color: #555;
+        }
+
+        select, input[type="text"], button {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-top: 8px;
+        }
+
+        select:focus, input[type="text"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .product-description {
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            font-style: italic;
+            color: #555;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-section {
+            display: none;
+        }
+
+        .payment-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .payment-list li {
+            margin-bottom: 10px;
+        }
+
+        .payment-list input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        .payment-list label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .section input[type="text"] {
+            background-color: #f9f9f9;
+        }
+
+        .section select {
+            background-color: #f9f9f9;
+        }
+
+        /* Media Queries untuk responsif pada layar yang lebih kecil (Tablet, Mobile) */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                width: 90%; /* Menggunakan lebih banyak ruang pada layar kecil */
+                max-width: 100%; /* Lebar form sesuai layar */
+            }
+
+            .header {
+                font-size: 28px; /* Ukuran font header lebih kecil untuk perangkat kecil */
+                padding: 12px 0;
+            }
+
+            button {
+                font-size: 16px; /* Ukuran font tombol lebih kecil pada perangkat kecil */
+            }
+
+            h1 {
+                font-size: 24px; /* Ukuran font judul lebih kecil pada perangkat kecil */
+            }
+        }
+
+        /* Media Queries untuk perangkat lebih kecil (Mobile) */
+        @media (max-width: 480px) {
+            .header {
+                font-size: 24px; /* Ukuran font lebih kecil pada ponsel */
+                padding: 10px 0;
+            }
+
+            h1 {
+                font-size: 20px; /* Ukuran font lebih kecil pada ponsel */
+            }
+
+            select, input[type="text"], button {
+                padding: 10px; /* Padding lebih kecil agar lebih pas di layar */
+            }
+
+            button {
+                font-size: 14px; /* Ukuran font tombol lebih kecil */
+            }
+
+            .container {
+                padding: 15px;
+                width: 90%;
+            }
+
+            .product-description {
+                font-size: 14px; /* Mengurangi ukuran font deskripsi produk pada perangkat kecil */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header untuk Nama Perusahaan -->
+    <div class="header">
+        SRC STORE
+    </div>
+
+    <div class="container">
+        <h1>Form Pembelian</h1>
+
+        <!-- Kategori -->
+        <div class="section">
+            <label for="category">Pilih Kategori:</label>
+            <select id="category">
+                <option value="">-- Pilih Kategori --</option>
+                <option value="elektronik">Elektronik</option>
+                <option value="fashion">Fashion</option>
+                <option value="makanan">Makanan</option>
+            </select>
+        </div>
+
+        <!-- Produk berdasarkan kategori -->
+        <div class="section">
+            <label for="product">Pilih Produk:</label>
+            <select id="product">
+                <option value="">-- Pilih Produk --</option>
+            </select>
+        </div>
+
+        <!-- Deskripsi Produk -->
+        <div class="section product-description" id="productDescription">
+            <!-- Deskripsi akan muncul di sini -->
+        </div>
+
+        <!-- Metode Pembayaran (sembunyikan dulu) -->
+        <div class="section payment-section" id="paymentSection">
+            <label for="payment">Pilih Metode Pembayaran:</label>
+            <ul class="payment-list" id="paymentList">
+                <!-- List akan diupdate berdasarkan produk -->
+            </ul>
+        </div>
+
+        <!-- Nomor Tujuan dan Tombol Beli -->
+        <div class="section">
+            <label for="phone">Nomor Tujuan:</label>
+            <input type="text" id="phone" placeholder="Masukkan nomor tujuan">
+        </div>
+
+        <div class="section">
+            <button onclick="submitForm()">Beli</button>
+        </div>
+    </div>
+
+    <script>
+        const products = {
+            elektronik: [
+                { name: 'Smartphone', paymentMethods: ['pulsa', 'dana', 'gopay'], description: 'Smartphone terbaru dengan fitur canggih dan harga terjangkau.' },
+                { name: 'Laptop', paymentMethods: ['pulsa', 'dana'], description: 'Laptop ringan dan kuat, ideal untuk bekerja atau bermain game.' },
+                { name: 'Headphone', paymentMethods: ['pulsa'], description: 'Headphone dengan kualitas suara premium dan noise cancellation.' }
+            ],
+            fashion: [
+                { name: 'T-Shirt', paymentMethods: ['pulsa', 'dana', 'gopay'], description: 'T-shirt nyaman dan modis untuk kegiatan sehari-hari.' },
+                { name: 'Jacket', paymentMethods: ['pulsa'], description: 'Jaket stylish yang cocok digunakan di musim dingin.' },
+                { name: 'Jeans', paymentMethods: ['tidak'], description: 'Jeans yang nyaman untuk dipakai sehari-hari.' }
+            ],
+            makanan: [
+                { name: 'Nasi Goreng', paymentMethods: ['pulsa', 'dana'], description: 'Makanan khas Indonesia yang pedas dan nikmat.' },
+                { name: 'Sate', paymentMethods: ['pulsa'], description: 'Sate ayam dengan bumbu kacang yang menggugah selera.' },
+                { name: 'Mie Ayam', paymentMethods: ['tidak'], description: 'Mie ayam dengan kuah kaldu yang gurih dan daging ayam suwir.' }
+            ]
+        };
+
+        const categorySelect = document.getElementById('category');
+        const productSelect = document.getElementById('product');
+        const productDescription = document.getElementById('productDescription');
+        const paymentSection = document.getElementById('paymentSection');
+        const paymentList = document.getElementById('paymentList');
+
+        // Fungsi untuk mengupdate pilihan produk berdasarkan kategori
+        categorySelect.addEventListener('change', function() {
+            const category = this.value;
+            productSelect.innerHTML = '<option value="">-- Pilih Produk --</option>'; // Reset produk
+            productDescription.innerHTML = ''; // Reset deskripsi produk
+            paymentSection.style.display = 'none'; // Sembunyikan metode pembayaran
+
+            if (category && products[category]) {
+                products[category].forEach(product => {
+                    const option = document.createElement('option');
+                    option.value = product.name.toLowerCase().replace(' ', '-');
+                    option.textContent = product.name;
+                    productSelect.appendChild(option);
+                });
+            }
+        });
+
+        // Fungsi untuk menampilkan deskripsi dan metode pembayaran sesuai produk yang dipilih
+        productSelect.addEventListener('change', function() {
+            const selectedProductName = this.value;
+            const category = categorySelect.value;
+            const selectedProduct = products[category]?.find(product => product.name.toLowerCase().replace(' ', '-') === selectedProductName);
+
+            // Clear payment list and description
+            paymentList.innerHTML = '';
+            productDescription.innerHTML = '';
+
+            if (selectedProduct) {
+                // Menampilkan deskripsi produk
+                productDescription.innerHTML = `<strong>Deskripsi Produk:</strong> ${selectedProduct.description}`;
+
+                selectedProduct.paymentMethods.forEach(method => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<input type="radio" id="${method}" name="payment" value="${method}"> <label for="${method}">${method.charAt(0).toUpperCase() + method.slice(1)}</label>`;
+                    paymentList.appendChild(li);
+                });
+
+                paymentSection.style.display = 'block'; // Show payment section
+            } else {
+                paymentSection.style.display = 'none'; // Hide payment section if no product selected
+            }
+        });
+
+        // Fungsi untuk menangani tombol beli
+        function submitForm() {
+            const category = categorySelect.value;
+            const product = productSelect.value;
+            const payment = document.querySelector('input[name="payment"]:checked');
+            const phone = document.getElementById('phone').value;
+
+            // Validasi input
+            if (!category || !product || !phone) {
+                alert('Mohon lengkapi semua informasi.');
+                return;
+            }
+
+            // Membuat pesan WhatsApp dengan format yang ditentukan
+            let message;
+            if (payment && payment.value !== 'tidak') {
+                // Jika pembayaran tidak 'tidak', kirimkan metode pembayaran
+                message = `${category} ${product}.${phone}.${payment.value}`;
+            } else {
+                // Jika pembayaran adalah 'tidak', kirimkan kategori, produk, dan nomor saja
+                message = `${category} ${product}.${phone}`;
+            }
+
+            // Mengarahkan ke WhatsApp dengan pesan yang sudah diformat
+            const phoneNumber = '089510044680'; // Nomor WhatsApp tujuan
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+            // Mengarahkan browser ke URL WhatsApp
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+
+</body>
+</html>
