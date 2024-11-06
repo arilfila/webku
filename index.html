@@ -197,7 +197,7 @@
             <label for="category">Pilih Kategori:</label>
             <select id="category">
                 <option value="">-- Pilih Kategori --</option>
-                <option value="elektronik">Elektronik</option>
+                <option value="orderverif">orderverif</option>
                 <option value="fashion">Fashion</option>
                 <option value="makanan">Makanan</option>
             </select>
@@ -237,8 +237,8 @@
 
     <script>
         const products = {
-            elektronik: [
-                { name: 'Smartphone', paymentMethods: ['pulsa', 'dana', 'gopay'], description: 'Smartphone terbaru dengan fitur canggih dan harga terjangkau.' },
+            orderverif: [
+                { name: 'XED1', paymentMethods: ['pulsa', 'dana', 'gopay'], description: 'Extra edukasi 1gb.' },
                 { name: 'Laptop', paymentMethods: ['pulsa', 'dana'], description: 'Laptop ringan dan kuat, ideal untuk bekerja atau bermain game.' },
                 { name: 'Headphone', paymentMethods: ['pulsa'], description: 'Headphone dengan kualitas suara premium dan noise cancellation.' }
             ],
@@ -327,7 +327,7 @@
             }
 
             // Mengarahkan ke WhatsApp dengan pesan yang sudah diformat
-            const phoneNumber = '089510044680'; // Nomor WhatsApp tujuan
+            const phoneNumber = '6287717272676'; // Nomor WhatsApp tujuan
             const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
             // Mengarahkan browser ke URL WhatsApp
