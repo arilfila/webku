@@ -123,6 +123,11 @@
             color: #8A2BE2;
             margin-top: 10px;
         }
+
+        .selected-payment {
+            background-color: #4CAF50; /* Warna tombol saat dipilih */
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -139,7 +144,7 @@
 
         <!-- Teks yang akan ditampilkan -->
         <div class="info-text" id="infoText">
-            <p>Ini adalah panel web otomatis berikut cara penggunaanya :<br>1. masukkan data ke kolom serta pilih kategori dan produknya<br>2. periksa lagi bahwa data dan produk yang dipilih sudah benar<br>3. klik BELI untuk membeli produk,nanti akan di arahkan ke whatsapp<br>4. setelah di whatsapp,kirim pesan yang sudah disusun otomatis oleh system ke nomor BOT<br>5. tunguu dan pesanan akan di proses<br><br>SEMUA PESANAN DI PROSES SYSTEM 24JAM</p>
+            <p>Ini adalah panel web otomatis berikut cara penggunaanya :<br>1. masukkan data ke kolom serta pilih kategori dan produknya<br>2. periksa lagi bahwa data dan produk yang dipilih sudah benar<br>3. klik BELI untuk membeli produk,nanti akan di arahkan ke whatsapp<br>4. setelah di whatsapp,kirim pesan yang sudah disusun otomatis oleh system ke nomor BOT<br>5. tunggu dan pesanan akan di proses<br><br>SEMUA PESANAN DI PROSES SYSTEM 24JAM</p>
         </div>
 
         <!-- Kategori Utama -->
@@ -159,6 +164,7 @@
             <select id="subcategory" disabled>
                 <option value="">-- Pilih Sub-Kategori --</option>
             </select>
+            <div id="subcategoryDescription" style="margin-top: 10px; color: #555; font-size: 14px;"></div>
         </div>
 
         <!-- Produk -->
@@ -168,6 +174,9 @@
                 <option value="">-- Pilih Produk --</option>
             </select>
         </div>
+
+        <!-- Deskripsi Produk -->
+        <div class="section" id="productDescription" style="margin-top: 10px; color: #555; font-size: 14px;"></div>
 
         <!-- Harga Produk -->
         <div class="section price" id="productPrice"></div>
@@ -368,8 +377,11 @@
         const subcategorySelect = document.getElementById('subcategory');
         const productSelect = document.getElementById('product');
         const productPrice = document.getElementById('productPrice');
+        const productDescription = document.getElementById('productDescription');
+        const subcategoryDescription = document.getElementById('subcategoryDescription');
         const paymentSection = document.getElementById('paymentSection');
         const paymentList = document.getElementById('paymentList');
+        let selectedPaymentMethod = '';
 
         // Fungsi untuk mengupdate subkategori berdasarkan kategori
         categorySelect.addEventListener('change', function() {
@@ -377,6 +389,8 @@
             subcategorySelect.innerHTML = '<option value="">-- Pilih Sub-Kategori --</option>';
             productSelect.innerHTML = '<option value="">-- Pilih Produk --</option>';
             productPrice.innerHTML = '';
+            productDescription.innerHTML = '';
+            subcategoryDescription.innerHTML = '';
             paymentSection.style.display = 'none';
 
             if (category && products[category]) {
@@ -399,6 +413,8 @@
             const subcategory = this.value;
             productSelect.innerHTML = '<option value="">-- Pilih Produk --</option>';
             productPrice.innerHTML = '';
+            productDescription.innerHTML = '';
+            subcategoryDescription.innerHTML = '';
             paymentSection.style.display = 'none';
 
             if (category && subcategory && products[category]) {
@@ -409,39 +425,74 @@
                     option.textContent = product.name;
                     productSelect.appendChild(option);
                 });
+
+                // Menampilkan deskripsi subkategori
+                const subcategoryInfo = subcategoryProducts[0].subcategoryDescription;
+                subcategoryDescription.innerHTML = subcategoryInfo;
                 productSelect.disabled = false;
             } else {
                 productSelect.disabled = true;
             }
         });
 
-        // Fungsi untuk menampilkan harga dan metode pembayaran
+        // Fungsi untuk menampilkan harga dan deskripsi produk
         productSelect.addEventListener('change', function() {
             const category = categorySelect.value;
             const subcategory = subcategorySelect.value;
             const productCode = this.value;
             productPrice.innerHTML = '';
+            productDescription.innerHTML = '';
+            paymentSection.style.display = 'none';
 
             if (category && subcategory && productCode && products[category]) {
                 const subcategoryProducts = products[category].subcategories[subcategory];
                 const product = subcategoryProducts.find(p => p.code === productCode);
                 if (product) {
                     productPrice.innerHTML = product.price;
+                    productDescription.innerHTML = product.description;
                     paymentSection.style.display = 'block';
+
+                    // Menampilkan metode pembayaran yang tersedia
                     paymentList.innerHTML = '';
                     product.paymentMethods.forEach(method => {
-                        const li = document.createElement('li');
-                        li.innerHTML = `<input type="radio" name="payment" value="${method}" id="${method}"><label for="${method}">${method}</label>`;
-                        paymentList.appendChild(li);
+                        const button = document.createElement('button');
+                        button.textContent = method;
+                        button.classList.add('payment-button');
+                        button.onclick = () => selectPaymentMethod(method, button);
+                        paymentList.appendChild(button);
                     });
                 }
             }
         });
 
-         // Fungsi untuk menampilkan atau menyembunyikan informasi
-         function toggleInfo() {
+        // Fungsi untuk memilih metode pembayaran
+        function selectPaymentMethod(method, button) {
+            selectedPaymentMethod = method;
+            document.querySelectorAll('.payment-button').forEach(btn => btn.classList.remove('selected-payment'));
+            button.classList.add('selected-payment');
+        }
+
+        // Fungsi untuk mengirim data form
+        function submitForm() {
+            const phone = document.getElementById('phone').value;
+            const category = categorySelect.value;
+            const subcategory = subcategorySelect.value;
+            const product = productSelect.value;
+
+            if (!phone || !category || !subcategory || !product || !selectedPaymentMethod) {
+                alert("Pastikan semua pilihan sudah diisi!");
+                return;
+            }
+
+            const productCode = products[category].subcategories[subcategory].find(p => p.code === product).code;
+            const url = `https://wa.me/62${phone}?text=Hai, saya ingin membeli produk ${productCode} dari kategori ${category}, subkategori ${subcategory} menggunakan metode pembayaran ${selectedPaymentMethod}.`;
+            window.open(url, '_blank');
+        }
+
+        // Fungsi untuk toggle informasi tambahan
+        function toggleInfo() {
             const infoText = document.getElementById('infoText');
-            infoText.style.display = infoText.style.display === 'block' ? 'none' : 'block';
+            infoText.style.display = infoText.style.display === 'none' ? 'block' : 'none';
         }
 
         // Fungsi untuk submit form
@@ -451,33 +502,33 @@
         }
 
         // Fungsi untuk menangani tombol beli
-        function submitForm() {
-            const category = categorySelect.value;
-            const subcategory = subcategorySelect.value;
-            const productCode = productSelect.value;
-            const payment = document.querySelector('input[name="payment"]:checked');
-            const phone = document.getElementById('phone').value;
+function submitForm() {
+    const category = categorySelect.value;
+    const subcategory = subcategorySelect.value;
+    const productCode = productSelect.value;
+    const phone = document.getElementById('phone').value;
 
-            if (!subcategory || !productCode || !phone) {
-                alert('Mohon lengkapi semua informasi.');
-                return;
-            }
+    if (!subcategory || !productCode || !phone || !selectedPaymentMethod) {
+        alert('Mohon lengkapi semua informasi.');
+        return;
+    }
 
-            const selectedProduct = products[category]?.subcategories[subcategory]?.find(product => product.code === productCode);
-            const productName = selectedProduct ? selectedProduct.name : '';
+    const selectedProduct = products[category]?.subcategories[subcategory]?.find(product => product.code === productCode);
+    const productName = selectedProduct ? selectedProduct.name : '';
 
-            let message;
-            if (payment && payment.value !== 'tidak') {
-                message = `${subcategory} ${productCode}.${phone}.${payment.value}`;
-            } else {
-                message = `${subcategory} ${productCode}.${phone}`;
-            }
+    let message;
+    if (selectedPaymentMethod !== 'tidak') {
+        message = `${subcategory} ${productCode}.${phone}.${selectedPaymentMethod}`;
+    } else {
+        message = `${subcategory} ${productCode}.${phone}`;
+    }
 
-            const phoneNumber = '6287717272676'; // Nomor WhatsApp tujuan
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const phoneNumber = '6287717272676'; // Nomor WhatsApp tujuan
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-            window.open(whatsappURL, '_blank');
-        }
+    window.open(whatsappURL, '_blank');
+}
+
     </script>
 </body>
 </html>
