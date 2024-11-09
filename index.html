@@ -68,33 +68,53 @@
             margin-top: 8px;
         }
 
-        select:focus, input[type="text"]:focus {
-            border-color: #8A2BE2;
-            outline: none;
-        }
-
         button {
             background-color: #2114d6;
             color: white;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 14px; /* Ukuran font lebih kecil */
+            font-weight: normal;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            margin-top: 20px;
+            margin-top: 10px;
+            width: auto;
+            padding: 6px 15px; /* Padding lebih kecil */
+            border-radius: 20px; /* Agar tombol lebih bulat */
+            text-align: center;
         }
 
         button:hover {
+            background-color: #1b61e2;
+        }
+
+        /* Mengatur posisi tombol agar berada di kiri */
+        .left-button {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            padding: 6px 15px;
+            font-size: 14px;
+            font-weight: normal;
+            background-color: #2114d6;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .left-button:hover {
             background-color: #1bd5e2;
         }
 
-        .product-description {
-            margin-top: 10px;
+        .info-text {
+            background-color: #e7f4fe;
+            border: 1px solid #90c9e3;
+
             padding: 15px;
-            background-color: #f9f9f9;
+            margin-top: 10px;
+            margin-bottom: 10px; /* Menambahkan jarak di bawah elemen .info-text */
             border-radius: 8px;
-            font-style: italic;
+            display: none;
             color: #555;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .price {
@@ -103,43 +123,10 @@
             color: #8A2BE2;
             margin-top: 10px;
         }
-
-        .payment-section {
-            display: none;
-        }
-
-        .payment-list {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .payment-list li {
-            margin-bottom: 10px;
-        }
-
-        .payment-list input[type="radio"] {
-            margin-right: 8px;
-        }
-
-        .payment-list label {
-            font-size: 16px;
-            color: #555;
-        }
-
-        .subcategory-description {
-            margin-top: 10px;
-            font-style: italic;
-            color: #777;
-            background-color: #f9f9f9;
-            padding: 10px;
-            border-radius: 8px;
-            display: none;
-        }
     </style>
 </head>
 <body>
 
-    <!-- Header untuk Nama Perusahaan -->
     <div class="header">
         SRC STORE
     </div>
@@ -147,13 +134,21 @@
     <div class="container">
         <h1>SRC STORE</h1>
 
+        <!-- Tombol BACA INI! -->
+        <button onclick="toggleInfo()">BACA INI!</button>
+
+        <!-- Teks yang akan ditampilkan -->
+        <div class="info-text" id="infoText">
+            <p>Ini adalah panel web otomatis berikut cara penggunaanya :<br>1. masukkan data ke kolom serta pilih kategori dan produknya<br>2. periksa lagi bahwa data dan produk yang dipilih sudah benar<br>3. klik BELI untuk membeli produk,nanti akan di arahkan ke whatsapp<br>4. setelah di whatsapp,kirim pesan yang sudah disusun otomatis oleh system ke nomor BOT<br>5. tunguu dan pesanan akan di proses<br><br>SEMUA PESANAN DI PROSES SYSTEM 24JAM</p>
+        </div>
+
         <!-- Kategori Utama -->
         <div class="section">
             <label for="category">Pilih Kategori:</label>
             <select id="category">
                 <option value="">-- Pilih Kategori --</option>
                 <option value="paket_otp">PAKET OTP</option>
-                <option value="paket_nonotp">Paket NON OTP</option>
+                <option value="paket_nonotp">PAKET NON OTP</option>
                 <option value="paket_inject">PAKET INJECT</option>
             </select>
         </div>
@@ -164,13 +159,9 @@
             <select id="subcategory" disabled>
                 <option value="">-- Pilih Sub-Kategori --</option>
             </select>
-            <!-- Deskripsi Sub-Kategori -->
-            <div class="subcategory-description" id="subcategoryDescription">
-                <!-- Deskripsi akan muncul di sini -->
-            </div>
         </div>
 
-        <!-- Produk berdasarkan kategori dan sub kategori -->
+        <!-- Produk -->
         <div class="section">
             <label for="product">Pilih Produk:</label>
             <select id="product" disabled>
@@ -178,22 +169,13 @@
             </select>
         </div>
 
-        <!-- Deskripsi Produk -->
-        <div class="section product-description" id="productDescription">
-            <!-- Deskripsi akan muncul di sini -->
-        </div>
-
         <!-- Harga Produk -->
-        <div class="section price" id="productPrice">
-            <!-- Harga akan muncul di sini -->
-        </div>
+        <div class="section price" id="productPrice"></div>
 
         <!-- Metode Pembayaran -->
-        <div class="section payment-section" id="paymentSection">
+        <div class="section" id="paymentSection" style="display: none;">
             <label for="payment">Pilih Metode Pembayaran:</label>
-            <ul class="payment-list" id="paymentList">
-                <!-- List akan diupdate berdasarkan produk -->
-            </ul>
+            <ul id="paymentList"></ul>
         </div>
 
         <!-- Nomor Tujuan dan Tombol Beli -->
@@ -384,9 +366,7 @@
 
         const categorySelect = document.getElementById('category');
         const subcategorySelect = document.getElementById('subcategory');
-        const subcategoryDescription = document.getElementById('subcategoryDescription');
         const productSelect = document.getElementById('product');
-        const productDescription = document.getElementById('productDescription');
         const productPrice = document.getElementById('productPrice');
         const paymentSection = document.getElementById('paymentSection');
         const paymentList = document.getElementById('paymentList');
@@ -396,19 +376,18 @@
             const category = this.value;
             subcategorySelect.innerHTML = '<option value="">-- Pilih Sub-Kategori --</option>';
             productSelect.innerHTML = '<option value="">-- Pilih Produk --</option>';
-            productDescription.innerHTML = '';
             productPrice.innerHTML = '';
-            subcategoryDescription.style.display = 'none';
             paymentSection.style.display = 'none';
 
             if (category && products[category]) {
-                subcategorySelect.disabled = false;
-                Object.keys(products[category].subcategories).forEach(subcategory => {
+                const subcategories = products[category].subcategories;
+                Object.keys(subcategories).forEach(subcategory => {
                     const option = document.createElement('option');
                     option.value = subcategory;
-                    option.textContent = subcategory.charAt(0).toUpperCase() + subcategory.slice(1);
+                    option.textContent = subcategory;
                     subcategorySelect.appendChild(option);
                 });
+                subcategorySelect.disabled = false;
             } else {
                 subcategorySelect.disabled = true;
             }
@@ -419,54 +398,57 @@
             const category = categorySelect.value;
             const subcategory = this.value;
             productSelect.innerHTML = '<option value="">-- Pilih Produk --</option>';
-            productDescription.innerHTML = '';
             productPrice.innerHTML = '';
             paymentSection.style.display = 'none';
 
-            if (category && subcategory && products[category] && products[category].subcategories[subcategory]) {
-                const description = products[category].subcategories[subcategory][0].subcategoryDescription;
-                subcategoryDescription.textContent = description;
-                subcategoryDescription.style.display = 'block';
-
-                products[category].subcategories[subcategory].forEach(product => {
+            if (category && subcategory && products[category]) {
+                const subcategoryProducts = products[category].subcategories[subcategory];
+                subcategoryProducts.forEach(product => {
                     const option = document.createElement('option');
-                    option.value = product.code; // menggunakan code sebagai value
+                    option.value = product.code;
                     option.textContent = product.name;
                     productSelect.appendChild(option);
                 });
                 productSelect.disabled = false;
             } else {
                 productSelect.disabled = true;
-                subcategoryDescription.style.display = 'none';
             }
         });
 
-        // Fungsi untuk menampilkan deskripsi dan harga produk
+        // Fungsi untuk menampilkan harga dan metode pembayaran
         productSelect.addEventListener('change', function() {
-            const selectedProductCode = this.value;
             const category = categorySelect.value;
             const subcategory = subcategorySelect.value;
-            const selectedProduct = products[category]?.subcategories[subcategory]?.find(product => product.code === selectedProductCode);
-
-            paymentList.innerHTML = '';
-            productDescription.innerHTML = '';
+            const productCode = this.value;
             productPrice.innerHTML = '';
 
-            if (selectedProduct) {
-                productDescription.innerHTML = `<strong>Deskripsi Produk:</strong> ${selectedProduct.description}`;
-                productPrice.innerHTML = `<strong>Harga:</strong> ${selectedProduct.price}`;
-
-                selectedProduct.paymentMethods.forEach(method => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<input type="radio" id="${method}" name="payment" value="${method}"> <label for="${method}">${method.charAt(0).toUpperCase() + method.slice(1)}</label>`;
-                    paymentList.appendChild(li);
-                });
-
-                paymentSection.style.display = 'block';
-            } else {
-                paymentSection.style.display = 'none';
+            if (category && subcategory && productCode && products[category]) {
+                const subcategoryProducts = products[category].subcategories[subcategory];
+                const product = subcategoryProducts.find(p => p.code === productCode);
+                if (product) {
+                    productPrice.innerHTML = product.price;
+                    paymentSection.style.display = 'block';
+                    paymentList.innerHTML = '';
+                    product.paymentMethods.forEach(method => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<input type="radio" name="payment" value="${method}" id="${method}"><label for="${method}">${method}</label>`;
+                        paymentList.appendChild(li);
+                    });
+                }
             }
         });
+
+         // Fungsi untuk menampilkan atau menyembunyikan informasi
+         function toggleInfo() {
+            const infoText = document.getElementById('infoText');
+            infoText.style.display = infoText.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Fungsi untuk submit form
+        function submitForm() {
+            const phone = document.getElementById('phone').value;
+            alert('Nomor tujuan: ' + phone);
+        }
 
         // Fungsi untuk menangani tombol beli
         function submitForm() {
