@@ -13,9 +13,10 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             flex-direction: column;
             height: 100vh;
+            overflow-x: hidden;
         }
 
         .header {
@@ -27,7 +28,12 @@
             font-size: 32px;
             font-weight: bold;
             letter-spacing: 2px;
-            margin-bottom: 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .container {
@@ -37,7 +43,14 @@
             max-width: 600px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
+            margin-top: 5px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 900;
+            flex-grow: 1;
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         h1 {
@@ -48,6 +61,9 @@
 
         .section {
             margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
         }
 
         label {
@@ -64,69 +80,113 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 16px;
-            box-sizing: border-box;
             margin-top: 8px;
+            display: inline-block;
         }
 
         button {
             background-color: #2114d6;
             color: white;
-            font-size: 14px; /* Ukuran font lebih kecil */
+            font-size: 14px;
             font-weight: normal;
             cursor: pointer;
             transition: background-color 0.3s ease;
             margin-top: 10px;
             width: auto;
-            padding: 6px 15px; /* Padding lebih kecil */
-            border-radius: 20px; /* Agar tombol lebih bulat */
+            padding: 6px 15px;
+            border-radius: 20px;
             text-align: center;
         }
 
         button:hover {
-            background-color: #1b61e2;
+            background-color: #29cf00;
         }
 
-        /* Mengatur posisi tombol agar berada di kiri */
-        .left-button {
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            padding: 6px 15px;
+        /* Kontainer untuk tombol "Beli Sekarang" dan WhatsApp */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px; /* Jarak antar tombol */
+        }
+
+        /* Tombol WhatsApp */
+        .whatsapp-button {
+            background-color: #00fc4c;
+            color: white;
             font-size: 14px;
-            font-weight: normal;
+            cursor: pointer;
+            padding: 12px 15px;
+            border-radius: 20px;
+            text-align: center;
+            border: none;
+            text-transform: uppercase;
+            flex: 1;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #09ff00;
+        }
+
+        /* Tombol Beli Sekarang */
+        .buy-button {
             background-color: #2114d6;
             color: white;
-            border-radius: 20px;
+            font-size: 14px;
+            font-weight: normal;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            padding: 6px 15px;
+            border-radius: 20px;
+            text-align: center;
+            flex: 1;
         }
 
-        .left-button:hover {
-            background-color: #1bd5e2;
+        .buy-button:hover {
+            background-color: #29cf00;
         }
 
-        .info-text {
-            background-color: #e7f4fe;
-            border: 1px solid #90c9e3;
-
-            padding: 15px;
-            margin-top: 10px;
-            margin-bottom: 10px; /* Menambahkan jarak di bawah elemen .info-text */
-            border-radius: 8px;
-            display: none;
-            color: #555;
-        }
-
-        .price {
-            font-size: 18px;
-            font-weight: bold;
-            color: #8A2BE2;
-            margin-top: 10px;
-        }
-
+        /* Styling untuk tombol yang dipilih (method yang sudah dipilih) */
         .selected-payment {
-            background-color: #4CAF50; /* Warna tombol saat dipilih */
-            color: white;
+            background-color: #29cf00; /* Warna hijau saat dipilih */
+            color: white; /* Warna teks putih */
+            border: 1px solid #29cf00; /* Border yang konsisten dengan warna hijau */
+        }
+
+        /* Responsif untuk perangkat mobile */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin-top: 80px;
+                width: 90%;
+            }
+
+            .header {
+                font-size: 24px;
+                padding: 12px 0;
+            }
+        }
+        #productPrice {
+            font-size: 20px; /* Ukuran font lebih besar */
+            font-weight: bold; /* Membuat teks lebih tebal */
+            color: #FF6347; /* Memberi warna yang mencolok (misalnya, merah tomat) */
+            background-color: #FFF8DC; /* Memberikan latar belakang sedikit kuning untuk kontras */
+            padding: 10px; /* Memberi padding untuk jarak antara teks dan batas */
+            border-radius: 8px; /* Memberikan sudut yang melengkung */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Memberikan bayangan halus di sekitar harga */
+            margin-top: 15px; /* Menambahkan jarak antara harga dan elemen lainnya */
+            text-align: center; /* Menempatkan harga di tengah */
+        }
+
+        /* Styling untuk deskripsi produk */
+        #productDescription {
+            font-size: 16px; /* Ukuran font standar untuk deskripsi */
+            color: #555; /* Warna teks abu-abu untuk deskripsi */
+            line-height: 1.6; /* Jarak antar baris yang nyaman dibaca */
+            padding: 15px; /* Memberikan jarak dalam deskripsi */
+            background-color: #f9f9f9; /* Latar belakang yang lebih terang */
+            border-radius: 8px; /* Sudut melengkung */
+            box-sizing: border-box;
+            margin-top: 10px; /* Memberikan jarak antara deskripsi dan elemen lainnya */
         }
     </style>
 </head>
@@ -139,12 +199,10 @@
     <div class="container">
         <h1>SRC STORE</h1>
 
-        <!-- Tombol BACA INI! -->
         <button onclick="toggleInfo()">BACA INI!</button>
 
-        <!-- Teks yang akan ditampilkan -->
         <div class="info-text" id="infoText">
-            <p>Ini adalah panel web otomatis berikut cara penggunaanya :<br>1. masukkan data ke kolom serta pilih kategori dan produknya<br>2. periksa lagi bahwa data dan produk yang dipilih sudah benar<br>3. klik BELI untuk membeli produk,nanti akan di arahkan ke whatsapp<br>4. setelah di whatsapp,kirim pesan yang sudah disusun otomatis oleh system ke nomor BOT<br>5. tunggu dan pesanan akan di proses<br><br>SEMUA PESANAN DI PROSES SYSTEM 24JAM</p>
+            <p>Ini adalah panel web otomatis berikut cara penggunaannya :<br>1. Masukkan data ke kolom serta pilih kategori dan produknya<br>2. Periksa lagi bahwa data dan produk yang dipilih sudah benar<br>3. Klik BELI untuk membeli produk, nanti akan diarahkan ke WhatsApp<br>4. Setelah di WhatsApp, kirim pesan yang sudah disusun otomatis oleh sistem ke nomor BOT<br>5. Tunggu dan pesanan akan diproses<br><br>SEMUA PESANAN DIPROSES OLEH SISTEM 24 JAM</p>
         </div>
 
         <!-- Kategori Utama -->
@@ -163,8 +221,9 @@
             <label for="subcategory">Pilih Sub-Kategori:</label>
             <select id="subcategory" disabled>
                 <option value="">-- Pilih Sub-Kategori --</option>
+                <option value="pengelola_akrab">PENGELOLA AKRAB</option>
             </select>
-            <div id="subcategoryDescription" style="margin-top: 10px; color: #555; font-size: 14px;"></div>
+            <div id="subcategoryDescription" style="margin-top: 10px; color: #555; font-size: 17px;"></div>
         </div>
 
         <!-- Produk -->
@@ -173,54 +232,58 @@
             <select id="product" disabled>
                 <option value="">-- Pilih Produk --</option>
             </select>
+            <div id="productDescription" class="product-description-container"></div>
+            <div id="productPrice" class="price"></div>
         </div>
 
-        <!-- Deskripsi Produk -->
-        <div class="section" id="productDescription" style="margin-top: 10px; color: #555; font-size: 14px;"></div>
-
-        <!-- Harga Produk -->
-        <div class="section price" id="productPrice"></div>
-
         <!-- Metode Pembayaran -->
-        <div class="section" id="paymentSection" style="display: none;">
-            <label for="payment">Pilih Metode Pembayaran:</label>
+        <div id="paymentSection" style="display: none;">
+            <h3>Pilih Metode Pembayaran:</h3>
             <ul id="paymentList"></ul>
         </div>
 
-        <!-- Nomor Tujuan dan Tombol Beli -->
+        <!-- Input No HP -->
         <div class="section">
             <label for="phone">Nomor Tujuan:</label>
-            <input type="text" id="phone" placeholder="Masukkan nomor tujuan">
+            <input type="text" id="phone" placeholder="Nomor Tujuan">
         </div>
 
-        <div class="section">
-            <button onclick="submitForm()">Beli</button>
+        <!-- Kontainer Tombol Beli dan WhatsApp -->
+        <div class="button-container">
+            <!-- Tombol Beli Sekarang -->
+            <button class="buy-button" onclick="submitForm()">Beli Sekarang</button>
+
+            <!-- Tombol WhatsApp -->
+            <button class="whatsapp-button" onclick="redirectToWhatsAppGroup()">Chat via WhatsApp</button>
         </div>
     </div>
 
     <script>
+        let isInfoVisible = true;
+
+        function toggleInfo() {
+            const infoText = document.getElementById('infoText');
+            isInfoVisible = !isInfoVisible;
+            infoText.style.display = isInfoVisible ? 'block' : 'none';
+        }
+
         const products = {
             paket_otp: {
                 subcategories: {
-                    orderverif: [
-                        { 
-                            name: 'EDUKASI 1gb',
-                            code: 'XED1',
-                            paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '<br>~ paket edukasi 1gb<br>~ sediakan pulsa/E-wallet 1.000', 
-                            price: 'Rp 1.000',
-                            subcategoryDescription: 'setelah dor,urusan kita selesai. Cek OTP kamu di https://myxl.nfime.xyz' 
-                        },
+                    AKRAB_PENGELOLA: [
                         { 
                             name: 'Unlock anggota tambahan Akrab', 
                             code: 'XAA1',
+                            perintah: 'ORDERVERIF',
                             price: 'Rp 0', 
                             paymentMethods: ['pulsa'], 
-                            description: '<br>~ Unlock Anggota tambahan akrab<br>~ Sediakan pulsa 20.000' 
+                            description: '<br>~ Unlock Anggota tambahan akrab<br>~ Sediakan pulsa 20.000', 
+                            subcategoryDescription: 'setelah dor,urusan kita selesai. Cek OTP kamu di [ https://myxl.nfime.xyz ]'
                         },
                         { 
                             name: 'Pengelola Akrab S', 
                             code: 'PS40',
+                            perintah: 'ORDERVERIF',
                             price: 'Rp 10.000', 
                             paymentMethods: ['pulsa', 'dana', 'gopay'], 
                             description: '<br>~ Pengelola akrab S<br>~ Sediakan pulsa/e-wallet 34.000' 
@@ -228,6 +291,7 @@
                         { 
                             name: 'Pengelola Akrab L',
                             code: 'PL40', 
+                            perintah: 'ORDERVERIF',
                             price: 'Rp 12.000', 
                             paymentMethods: ['pulsa', 'dana', 'gopay'], 
                             description: '<br>~ Pengelola akrab L<br>~ beli di jam tengah malam agar mendapat reward (ga ada jaminan)<br>~ Sediakan pulsa/e-wallet 108.000' 
@@ -235,6 +299,7 @@
                         { 
                             name: 'Pengelola Akrab XL', 
                             code: 'PXL40',
+                            perintah: 'ORDERVERIF',
                             price: 'Rp 15.000', 
                             paymentMethods: ['pulsa', 'dana', 'gopay'], 
                             description: '<br>~ Pengelola akrab XL<br>~ beli di jam tengah malam agar mendapat reward (ga ada jaminan)<br>~ Sediakan pulsa/e-wallet 168.000' 
@@ -242,27 +307,44 @@
                         { 
                             name: 'Pengelola Akrab XXL', 
                             code: 'PXXL40',
+                            perintah: 'ORDERVERIF',
                             price: 'Rp 15.000', 
                             paymentMethods: ['pulsa', 'dana', 'gopay'], 
                             description: '<br>~ Pengelola akrab XXL<br>~ beli di jam tengah malam agar mendapat reward (ga ada jaminan)<br>~ Sediakan pulsa/e-wallet 270.000' 
-                        },
+                        }
+                        
+                    ],
+                    MASA_AKTIF_XL: [
                         { 
                             name: 'Masa Aktif XL 1 tahun', 
                             code: 'XMS1TH',
+                            perintah: 'ORDERVERIF',
                             price: 'Rp 15.000', 
                             paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '<br>~ masa aktif selama 12bulan<br>~ masa aktif akan di perpanjang otomatis tiap bulan tidak langsunh 1 tahun<br>~ pilih metode dana,tapi tidak memotong saldo dana' 
+                            description: '<br>~ masa aktif selama 12bulan<br>~ masa aktif akan di perpanjang otomatis tiap bulan tidak langsunh 1 tahun<br>~ pilih metode dana,tapi tidak memotong saldo dana',
+                            subcategoryDescription: 'setelah dor,urusan kita selesai. Cek OTP kamu di [ https://myxl.nfime.xyz ]'
                         }
-                
+                    ],
+                    PAKET_TESTER: [
+                        { 
+                            name: 'EDUKASI 1gb',
+                            code: 'XED1',
+                            perintah: 'ORDERVERIF',
+                            paymentMethods: ['pulsa', 'dana', 'gopay'], 
+                            description: '<br>~ paket edukasi 1gb<br>~ sediakan pulsa/E-wallet 1.000', 
+                            price: 'Rp 1.000',
+                            subcategoryDescription: 'setelah dor,urusan kita selesai. Cek OTP kamu di [ https://myxl.nfime.xyz ]' 
+                        }
                     ]
                 }
             },
             paket_nonotp: {
                 subcategories: {
-                    orderfast: [
+                    ANGGOTA_AKRAB: [
                         { 
                             name: 'Akrab BIG SUPER',
                             code: 'XLBIGSUPER',
+                            perintah: 'ORDERFAST',
                             paymentMethods: ['tidak'], 
                             description: '<br>Area 1 = 30-32GB<br>Area 2 = 35-37GB<br>Area 3 = 48-50GB<br>Area 4 = 88-90GB<br>~ tidak ada refund, jika salah nomro atau apa (tolong teliti)<br>~ jika serasa nomor mempunyai bug 2 pengelola, JANGAN ORDER<br>~ GARANSI 20HARI<br>~ jika terkena kick pengelola lama.. Tidak Ada REINVITE',
                             price: 'Rp 57.000',
@@ -271,6 +353,7 @@
                         { 
                             name: 'Akrab XL NO REW (MINI)',
                             code: 'XLMINI',
+                            perintah: 'ORDERFAST',
                             paymentMethods: ['tidak'], 
                             description: '<br>Area 1 = 21.5 GB<br>Area 2 = 25.5 GB<br>Area 3 = 35 GB<br>Area 4 = 59 GB<br>~ jika masih ada Akrab,unreg dulu via myxl<br>~ GARANSI 30HARI<br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
                             price: 'Rp 56.000'
@@ -278,6 +361,7 @@
                         { 
                             name: 'Akrab XL REW (BIG)',
                             code: 'XLBIG',
+                            perintah: 'ORDERFAST',
                             paymentMethods: ['tidak'], 
                             description: '<br>Area 1 = 33 GB<br>Area 2 = 35 GB<br>Area 3 = 47 GB<br>Area 4 = 73 GB<br>~ Jka bonus myRewards tidak masuk.. silahkan ajukan komplen setelah 1 x 24 jam.. untuk menghindari delay myXL<br>~ jika bonus myRewards tidak masuk.. akan di refund RP 5.000<br>~ jika masih ada Akrab,unreg dulu via myxl<br>~ GARANSI 30HARI<br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
                             price: 'Rp 59.000'
@@ -285,6 +369,7 @@
                         { 
                             name: 'Akrab XXL REW (JUMBO)',
                             code: 'XLJUMBO',
+                            perintah: 'ORDERFAST',
                             paymentMethods: ['tidak'], 
                             description: '<br>Area 1 = 65 GB<br>Area 2 = 70 GB<br>Area 3 = 83 GB<br>Area 4 = 123 GB<br>~ Jka bonus myRewards tidak masuk.. silahkan ajukan komplen setelah 1 x 24 jam.. untuk menghindari delay myXL<br>~ jika bonus myRewards tidak masuk.. akan di refund RP 5.000<br>~ jika masih ada Akrab,unreg dulu via myxl<br>~ GARANSI 30HARI<br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
                             price: 'Rp 80.000'
@@ -292,6 +377,7 @@
                         { 
                             name: 'REINVITE (Big,mini,jumbo)',
                             code: 'REINVITE',
+                            perintah: 'ORDERFAST',
                             paymentMethods: ['tidak'], 
                             description: '<br>Area 1 = 65 GB<br>Area 2 = 70 GB<br>Area 3 = 83 GB<br>Area 4 = 123 GB<br>~ Jka bonus myRewards tidak masuk.. silahkan ajukan komplen setelah 1 x 24 jam.. untuk menghindari delay myXL<br>~ jika bonus myRewards tidak masuk.. akan di refund RP 5.000<br>~ jika masih ada Akrab,unreg dulu via myxl<br>~ GARANSI 30HARI<br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
                             price: 'Rp 0'
@@ -299,15 +385,15 @@
                         { 
                             name: 'Akrab Orderan Fake',
                             code: 'TESAKRAB',
+                            perintah: 'ORDERFAST',
                             paymentMethods: ['tidak'], 
                             description: 'JANGAN DI ORDER',
                             price: 'Rp 1.000'
-                        }
-                    ],
-                    ordercuan2: [
+                        },
                         { 
                             name: 'Akrab LITE',
                             code: '2bc5b2b5-82c1-490b-aaf8-a5587bf248f2',
+                            perintah: 'ORDERCUAN2',
                             paymentMethods: ['pulsa'], 
                             description: '<br>Area 1 = 37GB<br>Area 2 = 42GB<br>Area 3 = 55GB<br>Area 4 = 95GB<br>~ Di Proses Otomatis oleh sistem<br>~ Masa aktif random 28 - 30 hari<br>~ Garansi 7 Hari untuk Paket ini<br>~ Garansi berlaku jika tidak ada BUG pengelola lama<br>~ Tidak ada invite ulang ketika terkena BUG pengelola lama & Kesalahan Nomer<br>~ Unreg Akrab wajib MyXL',
                             price: 'Rp 55.000'
@@ -315,6 +401,7 @@
                         { 
                             name: 'Akrab PLUS',
                             code: '84060e35-0ac5-4fa1-8990-6e3240c1d091',
+                            perintah: 'ORDERCUAN2',
                             paymentMethods: ['pulsa'], 
                             description: '<br>Area 1 = 38GB<br>Area 2 = 44GB<br>Area 3 = 60GB<br>Area 4 = 103GB<br>~ Di Proses Otomatis oleh sistem<br>~ Masa aktif random 28 - 30 hari<br>~ Garansi 5 Hari untuk Paket ini<br>~ Garansi berlaku jika tidak ada BUG pengelola lama<br>~ Tidak ada invite ulang ketika terkena BUG pengelola lama & Kesalahan Nomer<br>~ Unreg Akrab wajib MyXL',
                             price: 'Rp 56.000'
@@ -324,55 +411,62 @@
             },
             paket_inject: {
                 subcategories: {
-                    ordercuan: [
+                    COMBO_SPECIAL: [
                         { 
                             name: 'Xtra Combo Special', 
-                            code: 'PAKET1',
+                            code: '56f57d85-dcb1-4c02-bae3-320009c09f29',
+                            perintah: 'ORDERCUAN',
                             price: 'Rp 5.000', 
                             paymentMethods: ['dana', 'gopay'], 
-                            description: '<br>~ Untuk syarat Xtra Unlimited Turbo<br>~ Kuota up to 8GB tergantung Hoki<br>~ memotong e-wallet 16.850',
+                            description: '<br>~ Untuk syarat Xtra Unlimited Turbo<br>~ Kuota up to 8GB tergantung Hoki<br>~ memotong e-wallet 16.850<br>~ Masa aktif 30hari',
                             subcategoryDescription: 'setelah dor,urusan kita selesai. Cek OTP kamu di https://hijaubiru.my.id' 
                         },
                         { 
                             name: 'Unlimited Turbo Premium', 
-                            code: 'PAKET2',
+                            code: '324e53da-0eef-4fa7-bda8-524f2f887976',
+                            perintah: 'ORDERCUAN',
                             price: 'Rp 2.000', 
                             paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '<br>~ WhatsApp,Line,Gojek,YouTube,Instagram,Facebook<br>~ Perkiraan Fup 90-100GB<br>~ memotong e-wallet/pulsa 13.500' 
+                            description: '<br>~ WhatsApp,Line,Gojek,YouTube,Instagram,Facebook<br>~ Perkiraan Fup 90-100GB<br>~ memotong e-wallet/pulsa 13.500<br>~ Masa aktif 7hari,bisa menjadi 30hari jika digandeng Xtra Combo Special' 
                         },
                         { 
                             name: 'Unlimited Turbo Super', 
-                            code: 'PAKET3',
+                            code: 'c0ec5b03-1979-4469-9f08-da566886b72c',
+                            perintah: 'ORDERCUAN',
                             price: 'Rp 2.000', 
                             paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '<br>~ WhatsApp,Line,Gojek,Instagram,Facebook<br>~ Perkiraan Fup 50-75GB<br>~ memotong e-wallet/pulsa 8.500' 
+                            description: '<br>~ WhatsApp,Line,Gojek,Instagram,Facebook<br>~ Perkiraan Fup 50-75GB<br>~ memotong e-wallet/pulsa 8.500<br>~ Masa aktif 7hari,bisa menjadi 30hari jika digandeng Xtra Combo Special' 
                         },
                         { 
                             name: 'Unlimited Turbo Standart', 
-                            code: 'PAKET4',
+                            code: '0ec83e9c-88ba-4c7e-b9c6-8c52f0a98a24',
+                            perintah: 'ORDERCUAN',
                             price: 'Rp 1.000', 
                             paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '<br>~ WhatsApp,Line,Gojek,Facebook<br>~ Perkiraan Fup 40-50GB<br>~ memotong e-wallet/pulsa 3.000' 
+                            description: '<br>~ WhatsApp,Line,Gojek,Facebook<br>~ Perkiraan Fup 40-50GB<br>~ memotong e-wallet/pulsa 3.000<br>~ Masa aktif 7hari,bisa menjadi 30hari jika digandeng Xtra Combo Special' 
                         },
                         { 
                             name: 'Unlimited Turbo Basic', 
-                            code: 'PAKET5',
+                            code: '3e686d04-0b70-4153-98ed-4a79ace62689',
+                            perintah: 'ORDERCUAN',
                             price: 'Rp 1.000', 
                             paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '<br>~ WhatsApp,Line,Gojek<br>~ Perkiraan Fup 20-30GB<br>~ memotong e-wallet/pulsa 500' 
+                            description: '<br>~ WhatsApp,Line,Gojek<br>~ Perkiraan Fup 20-30GB<br>~ memotong e-wallet/pulsa 500<br>~ Masa aktif 7hari,bisa menjadi 30hari jika digandeng Xtra Combo Special' 
                         },
                         { 
                             name: 'Unlimited Turbo Video', 
-                            code: 'PAKET12',
+                            code: 'f49c8d35-27b2-45e8-b69f-c94a32c27998',
+                            perintah: 'ORDERCUAN',
                             price: 'Rp 1.000', 
                             paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '<br>~ WhatsApp,Line,Gojek<br>~ Perkiraan Fup 100-200GB<br>~ memotong e-wallet/pulsa 25.000' 
+                            description: '<br>~ WhatsApp,Line,Gojek<br>~ Perkiraan Fup 100-200GB<br>~ memotong e-wallet/pulsa 25.000<br>~ masa aktif 30hari' 
                         }
                     ],
-                    orderkm: [
+                    INJECT_KM: [
                         { 
                             name: '[Method Dana] Unlimited Turbo Super', 
                             code: 'XLUNLITURBOHSUPER7H',
+                            perintah: 'ORDEKM',
                             price: 'Rp 1.000', 
                             paymentMethods: ['tidak'], 
                             description: '<br>~ Xtra Unlimited Turbo Super untuk akses LINE, Gojek, Facebook, dan Instagram secara Unlimited dengan Kuota WhatsApp Harian 50MB/hari<br>~ Dapat dipakai untuk Inject SSH/VPN (bagi yang tau-tau saja)<br>~ Sediakan saldo E-wallet Dana Rp8.500 (Akan terpotong segini)',
@@ -391,9 +485,8 @@
         const subcategoryDescription = document.getElementById('subcategoryDescription');
         const paymentSection = document.getElementById('paymentSection');
         const paymentList = document.getElementById('paymentList');
-        let selectedPaymentMethod = '';
+        let selectedPaymentMethod = null;
 
-        // Fungsi untuk mengupdate subkategori berdasarkan kategori
         categorySelect.addEventListener('change', function() {
             const category = this.value;
             subcategorySelect.innerHTML = '<option value="">-- Pilih Sub-Kategori --</option>';
@@ -408,7 +501,8 @@
                 Object.keys(subcategories).forEach(subcategory => {
                     const option = document.createElement('option');
                     option.value = subcategory;
-                    option.textContent = subcategory;
+                    // Mengganti "_" dengan spasi pada subkategori
+                    option.textContent = subcategory.replace(/_/g, ' ');
                     subcategorySelect.appendChild(option);
                 });
                 subcategorySelect.disabled = false;
@@ -417,7 +511,7 @@
             }
         });
 
-        // Fungsi untuk mengupdate produk berdasarkan subkategori
+        // Update event listener untuk subkategori dan produk
         subcategorySelect.addEventListener('change', function() {
             const category = categorySelect.value;
             const subcategory = this.value;
@@ -445,7 +539,7 @@
             }
         });
 
-        // Fungsi untuk menampilkan harga dan deskripsi produk
+        // Update event listener untuk produk
         productSelect.addEventListener('change', function() {
             const category = categorySelect.value;
             const subcategory = subcategorySelect.value;
@@ -458,12 +552,14 @@
                 const subcategoryProducts = products[category].subcategories[subcategory];
                 const product = subcategoryProducts.find(p => p.code === productCode);
                 if (product) {
+                    // Menampilkan harga produk dengan styling khusus
                     productPrice.innerHTML = product.price;
                     productDescription.innerHTML = product.description;
+                    productDescription.style.display = 'block';
                     paymentSection.style.display = 'block';
-
-                    // Menampilkan metode pembayaran yang tersedia
                     paymentList.innerHTML = '';
+
+                    // Menampilkan metode pembayaran
                     product.paymentMethods.forEach(method => {
                         const button = document.createElement('button');
                         button.textContent = method;
@@ -475,70 +571,52 @@
             }
         });
 
-        // Fungsi untuk memilih metode pembayaran
         function selectPaymentMethod(method, button) {
             selectedPaymentMethod = method;
+
+            // Menghapus kelas 'selected-payment' dari semua tombol
             document.querySelectorAll('.payment-button').forEach(btn => btn.classList.remove('selected-payment'));
+
+            // Menambahkan kelas 'selected-payment' ke tombol yang dipilih
             button.classList.add('selected-payment');
         }
 
-        // Fungsi untuk mengirim data form
         function submitForm() {
-            const phone = document.getElementById('phone').value;
             const category = categorySelect.value;
             const subcategory = subcategorySelect.value;
-            const product = productSelect.value;
+            const productCode = productSelect.value;
+            const phone = document.getElementById('phone').value;
 
-            if (!phone || !category || !subcategory || !product || !selectedPaymentMethod) {
-                alert("Pastikan semua pilihan sudah diisi!");
+            if (!subcategory || !productCode || !phone || !selectedPaymentMethod) {
+                alert('Mohon lengkapi semua informasi.');
                 return;
             }
 
-            const productCode = products[category].subcategories[subcategory].find(p => p.code === product).code;
-            const url = `https://wa.me/62${phone}?text=Hai, saya ingin membeli produk ${productCode} dari kategori ${category}, subkategori ${subcategory} menggunakan metode pembayaran ${selectedPaymentMethod}.`;
-            window.open(url, '_blank');
+            const selectedProduct = products[category]?.subcategories[subcategory]?.find(product => product.code === productCode);
+            const productName = selectedProduct ? selectedProduct.name : '';
+            const perintah = selectedProduct ? selectedProduct.perintah : '';
+
+            let message;
+
+            // Cek apakah payment method ada
+            if (selectedPaymentMethod !== 'tidak') {
+                // Gabungkan parameter dengan titik satu kali, pastikan tidak ada titik ganda
+                message = `${perintah} ${productCode}.${phone}.${selectedPaymentMethod}`;
+            } else {
+                // Jika payment method tidak dipilih, hanya gabungkan perintah, kode produk, dan nomor tujuan
+                message = `${perintah} ${productCode}.${phone}`;
+            }
+
+            const phoneNumber = '6287717272676';  // Ganti dengan nomor WhatsApp yang sesuai
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappURL, '_blank');
         }
 
-        // Fungsi untuk toggle informasi tambahan
-        function toggleInfo() {
-            const infoText = document.getElementById('infoText');
-            infoText.style.display = infoText.style.display === 'none' ? 'block' : 'none';
+        function redirectToWhatsAppGroup() {
+            const groupLink = "https://chat.whatsapp.com/your-group-link"; // Ganti dengan link grup WhatsApp kamu
+            window.open(groupLink, '_blank');
         }
-
-        // Fungsi untuk submit form
-        function submitForm() {
-            const phone = document.getElementById('phone').value;
-            alert('Nomor tujuan: ' + phone);
-        }
-
-        // Fungsi untuk menangani tombol beli
-function submitForm() {
-    const category = categorySelect.value;
-    const subcategory = subcategorySelect.value;
-    const productCode = productSelect.value;
-    const phone = document.getElementById('phone').value;
-
-    if (!subcategory || !productCode || !phone || !selectedPaymentMethod) {
-        alert('Mohon lengkapi semua informasi.');
-        return;
-    }
-
-    const selectedProduct = products[category]?.subcategories[subcategory]?.find(product => product.code === productCode);
-    const productName = selectedProduct ? selectedProduct.name : '';
-
-    let message;
-    if (selectedPaymentMethod !== 'tidak') {
-        message = `${subcategory} ${productCode}.${phone}.${selectedPaymentMethod}`;
-    } else {
-        message = `${subcategory} ${productCode}.${phone}`;
-    }
-
-    const phoneNumber = '6287717272676'; // Nomor WhatsApp tujuan
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-    window.open(whatsappURL, '_blank');
-}
-
     </script>
 </body>
 </html>
