@@ -212,7 +212,7 @@
                 <option value="">-- Pilih Kategori --</option>
                 <option value="paket_otp">PAKET OTP</option>
                 <option value="paket_nonotp">PAKET NON OTP</option>
-                <option value="paket_inject">PAKET INJECT</option>
+                <option value="paket_inject">PAKET INJECT (YTTA)</option>
             </select>
         </div>
 
@@ -278,7 +278,7 @@
                             price: 'Rp 0', 
                             paymentMethods: ['pulsa'], 
                             description: '<br>~ Unlock Anggota tambahan akrab<br>~ Sediakan pulsa 20.000', 
-                            subcategoryDescription: 'setelah dor,urusan kita selesai. Cek OTP kamu di [ https://myxl.nfime.xyz ]'
+                            subcategoryDescription: 'PAKET NON GARANSI. Cek OTP kamu di [ https://myxl.nfime.xyz ]'
                         },
                         { 
                             name: 'Pengelola Akrab S', 
@@ -316,13 +316,31 @@
                     ],
                     MASA_AKTIF_XL: [
                         { 
-                            name: 'Masa Aktif XL 1 tahun', 
-                            code: 'XMS1TH',
-                            perintah: 'ORDERVERIF',
-                            price: 'Rp 15.000', 
-                            paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '<br>~ masa aktif selama 12bulan<br>~ masa aktif akan di perpanjang otomatis tiap bulan tidak langsunh 1 tahun<br>~ pilih metode dana,tapi tidak memotong saldo dana',
-                            subcategoryDescription: 'setelah dor,urusan kita selesai. Cek OTP kamu di [ https://myxl.nfime.xyz ]'
+                            name: 'Masa Aktif XL 1 tahun (PROMO)', 
+                            code: '768685af08fb8d27427d8069478d573c',
+                            perintah: 'ORDERKM',
+                            price: 'Rp 10.000', 
+                            paymentMethods: ['tidak'], 
+                            description: '<br>~ masa aktif selama 12bulan<br>~ masa aktif akan di perpanjang otomatis tiap bulan tidak langsunh 1 tahun',
+                            subcategoryDescription: 'PAKET NON GARANSI. Cek OTP kamu di<br>[ https://nomorxlku.my.id/?sc=26102679380e3083112897edd42bb66a ]'
+                        },
+                        { 
+                            name: 'Masa Aktif XL 1 tahun (PROMO2)', 
+                            code: 'dcb2ce3f54d433fcabafec9f63069d8a',
+                            perintah: 'ORDERKM',
+                            price: 'Rp 10.000', 
+                            paymentMethods: ['tidak'], 
+                            description: '<br>~ masa aktif selama 12bulan<br>~ masa aktif akan di perpanjang otomatis tiap bulan tidak langsunh 1 tahun'
+                        }
+                    ],
+                    PAKET_HARIAN: [
+                        { 
+                            name: '2GB 3HARI', 
+                            code: 'XLINET2GB3D0P',
+                            perintah: 'ORDERKM',
+                            price: 'Rp 2.000', 
+                            paymentMethods: ['tidak'], 
+                            description: '<br>~ Tidak bisa diakumulasi<br>~ Pulsa boleh dalam keadaan Rp0<br>~ Hanya bisa untuk XL Prabayar<br>~ Jika tidak bisa ditembak, unreg dulu paketnya<br>~ Di beberapa nomor XL, paketnya tidak bisa diunreg. Jadi, kalau mau dor ulang harus nunggu paketnya expired dulu 3 hari kedepan, baru bisa ditembak ulang.'
                         }
                     ],
                     PAKET_TESTER: [
@@ -348,7 +366,7 @@
                             paymentMethods: ['tidak'], 
                             description: '<br>Area 1 = 30-32GB<br>Area 2 = 35-37GB<br>Area 3 = 48-50GB<br>Area 4 = 88-90GB<br>~ tidak ada refund, jika salah nomro atau apa (tolong teliti)<br>~ jika serasa nomor mempunyai bug 2 pengelola, JANGAN ORDER<br>~ GARANSI 20HARI<br>~ jika terkena kick pengelola lama.. Tidak Ada REINVITE',
                             price: 'Rp 57.000',
-                            subcategoryDescription: 'PAKET NON OTP, KUOTA LANGSUNG MASUK<br>BISA UNTUK XL/AXIS' 
+                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL/AXIS' 
                         },
                         { 
                             name: 'Akrab XL NO REW (MINI)',
@@ -419,7 +437,7 @@
                             price: 'Rp 5.000', 
                             paymentMethods: ['dana', 'gopay'], 
                             description: '<br>~ Untuk syarat Xtra Unlimited Turbo<br>~ Kuota up to 8GB tergantung Hoki<br>~ memotong e-wallet 16.850<br>~ Masa aktif 30hari',
-                            subcategoryDescription: 'setelah dor,urusan kita selesai. Cek OTP kamu di https://hijaubiru.my.id' 
+                            subcategoryDescription: 'PAKET NON GARANSI. Cek OTP kamu di https://hijaubiru.my.id' 
                         },
                         { 
                             name: 'Unlimited Turbo Premium', 
@@ -460,17 +478,6 @@
                             price: 'Rp 1.000', 
                             paymentMethods: ['pulsa', 'dana', 'gopay'], 
                             description: '<br>~ WhatsApp,Line,Gojek<br>~ Perkiraan Fup 100-200GB<br>~ memotong e-wallet/pulsa 25.000<br>~ masa aktif 30hari' 
-                        }
-                    ],
-                    INJECT_KM: [
-                        { 
-                            name: '[Method Dana] Unlimited Turbo Super', 
-                            code: 'XLUNLITURBOHSUPER7H',
-                            perintah: 'ORDERKM',
-                            price: 'Rp 1.000', 
-                            paymentMethods: ['tidak'], 
-                            description: '<br>~ Xtra Unlimited Turbo Super untuk akses LINE, Gojek, Facebook, dan Instagram secara Unlimited dengan Kuota WhatsApp Harian 50MB/hari<br>~ Dapat dipakai untuk Inject SSH/VPN (bagi yang tau-tau saja)<br>~ Sediakan saldo E-wallet Dana Rp8.500 (Akan terpotong segini)',
-                            subcategoryDescription: 'setelah dor,urusan kita selesai. Cek OTP kamu di https://hijaubiru.my.id' 
                         }
                     ]
                 }
