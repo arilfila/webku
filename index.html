@@ -111,7 +111,7 @@
 
         /* Tombol WhatsApp */
         .whatsapp-button {
-            background-color: #00fc4c;
+            background-color: #0bc224;
             color: white;
             font-size: 14px;
             cursor: pointer;
@@ -188,6 +188,41 @@
             box-sizing: border-box;
             margin-top: 10px; /* Memberikan jarak antara deskripsi dan elemen lainnya */
         }
+        .cekstock-button {
+            background-color: #fc0000;
+            color: white;
+            font-size: 10px;
+            cursor: pointer;
+            padding: 7px 10px;
+            border-radius: 20px;
+            text-align: center;
+            border: none;
+            text-transform: uppercase;
+            flex: 1;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        .cekstock-button:hover {
+            background-color: #b40000;
+        }
+        .deposit-button {
+            background-color: #d9ff02;
+            color: rgb(0, 0, 0);
+            font-size: 14px;
+            font-weight: normal;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            width: auto;
+            padding: 6px 15px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .deposit-button:hover {
+            background-color: #99b400;
+        }
     </style>
 </head>
 <body>
@@ -200,7 +235,8 @@
         <h1>SRC STORE</h1>
 
         <button onclick="toggleInfo()">BACA INI!</button>
-
+        <button class="deposit-button" onclick="window.location.href='deposit.html';">Deposit</button>
+        
         <div class="info-text" id="infoText">
             <p>Ini adalah panel web otomatis berikut cara penggunaannya :<br>1. Masukkan data ke kolom serta pilih kategori dan produknya<br>2. Periksa lagi bahwa data dan produk yang dipilih sudah benar<br>3. Klik BELI untuk membeli produk, nanti akan diarahkan ke WhatsApp<br>4. Setelah di WhatsApp, kirim pesan yang sudah disusun otomatis oleh sistem ke nomor BOT<br>5. Maka pesanan akan diproses otomatis oleh system<br><br>SEMUA PESANAN DIPROSES OLEH SYSTEM ON 24 JAM</p>
         </div>
@@ -234,6 +270,7 @@
             <div id="productDescription" class="product-description-container"></div>
             <div id="productPrice" class="price"></div>
         </div>
+        <button class="cekstock-button" onclick="window.open('https://wa.me/6287717272676?text=cekstock', '_blank');">Cek stock Akrab</button>
 
         <!-- Metode Pembayaran -->
         <div id="paymentSection" style="display: none;">
@@ -256,8 +293,9 @@
             <button class="whatsapp-button" onclick="redirectToWhatsAppGroup()">Chat via WhatsApp</button>
         </div>
     </div>
-
+    
     <script>
+
         let isInfoVisible = true;
 
         function toggleInfo() {
@@ -587,6 +625,7 @@
                 }
             }
         };
+
 
         const categorySelect = document.getElementById('category');
         const subcategorySelect = document.getElementById('subcategory');
