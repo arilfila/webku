@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .deposit-popup {
+            display: block; /* Menampilkan pop-up secara langsung */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            z-index: 1001;
+        }
+
+        .overlay {
+            display: block; /* Menampilkan overlay secara langsung */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .deposit-method {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .close-btn, .deposit-btn {
+            background-color: #2114d6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .close-btn:hover, .deposit-btn:hover {
+            background-color: #29cf00;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #666;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Pop-up Deposit -->
+    <div class="overlay" id="overlay"></div>
+    <div class="deposit-popup" id="depositPopup">
+        <h3>Pilih Metode Deposit</h3>
+        <div class="deposit-method">
+            <label for="depositMethod">Metode Deposit:</label>
+            <select id="depositMethod">
+                <option value="otomatis">Otomatis</option>
+                <option value="manual">Manual</option>
+            </select>
+            <p class="description">Pilih metode deposit yang sesuai dengan preferensi Anda. Jika memilih otomatis, masukkan nominal deposit yang diinginkan.</p>
+        </div>
+        <div class="section" id="nominalSection">
+            <label for="depositAmount">Nominal Deposit:</label>
+            <input type="text" id="depositAmount" placeholder="Masukkan nominal deposit">
+        </div>
+        <button class="deposit-btn" onclick="processDeposit()">Deposit</button>
+        <button class="close-btn" onclick="closeDepositPopup()">Tutup</button>
+    </div>
+
+    <script>
+        function closeDepositPopup() {
+            // Arahkan ke halaman index.html setelah menutup pop-up
+            window.location.href = 'index.html';
+        }
+
+        function processDeposit() {
+            var method = document.getElementById('depositMethod').value;
+            var amount = document.getElementById('depositAmount').value;
+            var message = '';
+
+            if (method === 'otomatis' && amount) {
+                message = 'Otomatis ' + amount;
+            } else if (method === 'manual') {
+                message = 'Manual';
+            }
+
+            // Generate WhatsApp link
+            var whatsappLink = "https://wa.me/6289510044680?text=" + encodeURIComponent(message);
+            
+            // Open WhatsApp link in a new tab
+            window.open(whatsappLink, "_blank");
+        }
+    </script>
+
+</body>
+</html>
