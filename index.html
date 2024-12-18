@@ -247,8 +247,8 @@
             <select id="category">
                 <option value="">-- Pilih Kategori --</option>
                 <option value="paket_otp">PAKET OTP</option>
-                <option value="paket_nonotp">PAKET NON OTP</option>
                 <option value="paket_inject">PAKET INJECT (OTP)</option>
+                <option value="paket_nonotp">PAKET NON OTP</option>
             </select>
         </div>
 
@@ -387,49 +387,72 @@
             },
             paket_inject: {
                 subcategories: {
-                    AKRAB_PENGELOLA: [
+                    EXTRA_COMBO_PLUS: [
                         { 
-                            name: 'Unlock anggota tambahan Akrab [Rp 0]', 
-                            code: 'XAA1',
-                            perintah: 'ORDERVERIF',
-                            price: '', 
-                            paymentMethods: ['pulsa'], 
-                            description: '<br>~ Unlock Anggota tambahan akrab<br>~ Sediakan pulsa 20.000', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Cek OTP kamu <a href="https://myxl.nfime.xyz" target="_blank">https://myxl.nfime.xyz</a>'
-                        },
-                        { 
-                            name: 'Pengelola Akrab S [Rp 10.000]', 
-                            code: 'PS40',
-                            perintah: 'ORDERVERIF',
+                            name: 'Xtra Combo Plus 4GB/5gb [Rp 3500]', 
+                            code: 'b80e2749-3f13-4536-b26a-c2696cc36315',
+                            perintah: 'ORDERCUAN',
                             price: '', 
                             paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '<br>~ Pengelola akrab S<br>~ Sediakan pulsa/e-wallet 34.000' 
+                            description: '<br>~ kuota utama 4-5GB<br>~ whatsapp 50MB/hari<br>~ di atas blue dapet myReward<br>~ sediakan pulsa/e-wallet 28.000', 
+                            subcategoryDescription: 'PAKET NON GARANSI. Cek OTP kamu <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
                         },
                         { 
-                            name: 'Pengelola Akrab L [Rp 12.000]',
-                            code: 'PL40', 
-                            perintah: 'ORDERVERIF',
+                            name: 'Xtra Combo Plus 10GB [Rp 7.000]', 
+                            code: '94762627-587c-4f44-a019-c3b9e323f1ad',
+                            perintah: 'ORDERCUAN',
                             price: '', 
                             paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '<br>~ Pengelola akrab L<br>~ beli di jam tengah malam agar mendapat reward (ga ada jaminan)<br>~ Sediakan pulsa/e-wallet 108.000' 
-                        },
+                            description: '<br>~ kuota utama 10GB<br>~ Unlimited Apps Produktivitas persis Biz untuk Inject SSH/VPN<br>~ Sediakan pulsa/e-wallet 64.000' 
+                        }   
+                    ],
+                    ADDON_COMBO_PLUS: [
                         { 
-                            name: 'Pengelola Akrab XL [Rp 15.000]', 
-                            code: 'PXL40',
-                            perintah: 'ORDERVERIF',
+                            name: 'Bonus Kuota Xtra Combo Plus/VIP Plus Viu 8GB [Rp 900]', 
+                            code: 'ADN_XCP_VIU_8GB_0_P',
+                            perintah: 'ORDERKM',
                             price: '', 
-                            paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '<br>~ Pengelola akrab XL<br>~ beli di jam tengah malam agar mendapat reward (ga ada jaminan)<br>~ Sediakan pulsa/e-wallet 168.000' 
+                            paymentMethods: ['dana', 'gopay'], 
+                            description: '<br>~ Harus ada paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ asa aktif paket mengikuti sisa masa aktif paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ Tidak dapat diakumulasi<br>~ Jika tidak dapat dibeli, silakan coba secara berkala', 
+                            subcategoryDescription: 'PAKET NON GARANSI. Cek OTP kamu <a href="https://nomorxlku.my.id/?sc=26102679380e3083112897edd42bb66a" target="_blank">https://nomorxlku.my.id/?sc=26102679380e3083112897edd42bb66a</a>'
                         },
                         { 
-                            name: 'Pengelola Akrab XXL [Rp 15.000]', 
-                            code: 'PXXL40',
-                            perintah: 'ORDERVERIF',
-                            price: 'Rp 15.000', 
-                            paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '<br>~ Pengelola akrab XXL<br>~ beli di jam tengah malam agar mendapat reward (ga ada jaminan)<br>~ Sediakan pulsa/e-wallet 270.000' 
+                            name: 'Bonus Kuota Xtra Combo Plus/VIP Plus YouTube 7GB [Rp 900]', 
+                            code: 'ADN_XCP_YT_7GB_0_P',
+                            perintah: 'ORDERKM',
+                            price: '', 
+                            paymentMethods: ['dana', 'gopay'], 
+                            description: '<br>~ Harus ada paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ asa aktif paket mengikuti sisa masa aktif paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ Tidak dapat diakumulasi<br>~ Jika tidak dapat dibeli, silakan coba secara berkala'
                         }
-                        
+                    ],
+                    ADDON_COMBO_LITE: [
+                        { 
+                            name: 'Youtube, Facebook, Instagram [Rp 1.000]', 
+                            code: 'd133a21c-b946-4853-8ddf-102436f1443e',
+                            perintah: 'ORDERCUAN',
+                            price: '', 
+                            paymentMethods: ['dana', 'gopay'], 
+                            description: '<br>~ Pastikan ADA paket xtra combo lite<br>~ Masa aktif mengikuti paket xtra combo lite<br>~ tidak bioleh ada paket addon xcl yang sama<br>~ sediakan e-wallet 6.000', 
+                            subcategoryDescription: 'PAKET NON GARANSI. Cek OTP kamu <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
+                        },
+                        { 
+                            name: 'Video, Facebook, Instagram [Rp 1.000]', 
+                            code: '15f946d9-ac5c-4f58-9d94-f82ac5bffe1b',
+                            perintah: 'ORDERCUAN',
+                            price: '', 
+                            paymentMethods: ['dana', 'gopay'], 
+                            description: '<br>~ Pastikan ADA paket xtra combo lite<br>~ Masa aktif mengikuti paket xtra combo lite<br>~ tidak bioleh ada paket addon xcl yang sama<br>~ sediakan e-wallet 6.000', 
+                            subcategoryDescription: 'PAKET NON GARANSI. Cek OTP kamu <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
+                        },  
+                        { 
+                            name: 'Netflix, Facebook, Instagram [Rp 1.000]', 
+                            code: '3d985723-c83e-43d0-81de-58d41289d808',
+                            perintah: 'ORDERCUAN',
+                            price: '', 
+                            paymentMethods: ['dana', 'gopay'], 
+                            description: '<br>~ Pastikan ADA paket xtra combo lite<br>~ Masa aktif mengikuti paket xtra combo lite<br>~ tidak bioleh ada paket addon xcl yang sama<br>~ sediakan e-wallet 6.000', 
+                            subcategoryDescription: 'PAKET NON GARANSI. Cek OTP kamu <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
+                        }
                     ]
                 }
             },
