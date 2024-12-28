@@ -297,7 +297,8 @@
                 <option value="">-- Pilih Kategori --</option>
                 <option value="paket_otp">PAKET OTP</option>
                 <option value="paket_inject">PAKET INJECT (OTP)</option>
-                <option value="paket_nonotp">PAKET NON OTP</option>
+                <option value="paket_reguler">REGULER NON OTP</option>
+                <option value="paket_nonotp">AKRAB NON OTP</option>
             </select>
         </div>
 
@@ -456,6 +457,33 @@
                             price: '', 
                             paymentMethods: ['tidak',], 
                             description: '~ PAKET NON GARANSI<br>~ 20gb reguler+5gb<br>~ 5gb whatsapp didapat tergantung hoki<br>~ bisa ditumpuk,kasih jeda 2 menit setelah sukses<br>~ Hanya bisa untuk XL<br>~ masa aktif 30hari',
+                            subcategoryDescription: 'PAKET OPEN jAM 06.00-22.00. Cek OTP kamu <a href="https://verfikasi.my.id" target="_blank">https://verfikasi.my.id</a>'
+                        },
+                        { 
+                            name: '25gb reguler 30hari [Rp 21.000]', 
+                            code: '5GBREG5X',
+                            perintah: 'ORDERMIN',
+                            price: '', 
+                            paymentMethods: ['tidak',], 
+                            description: '~ PAKET NON GARANSI<br>~ 25gb reguler+5gb<br>~ 5gb whatsapp didapat tergantung hoki<br>~ bisa ditumpuk,kasih jeda 2 menit setelah sukses<br>~ Hanya bisa untuk XL<br>~ masa aktif 30hari',
+                            subcategoryDescription: 'PAKET OPEN jAM 06.00-22.00. Cek OTP kamu <a href="https://verfikasi.my.id" target="_blank">https://verfikasi.my.id</a>'
+                        },
+                        { 
+                            name: '30gb reguler 30hari [Rp 25.000]', 
+                            code: '5GBREG6X',
+                            perintah: 'ORDERMIN',
+                            price: '', 
+                            paymentMethods: ['tidak',], 
+                            description: '~ PAKET NON GARANSI<br>~ 30gb reguler+5gb<br>~ 5gb whatsapp didapat tergantung hoki<br>~ bisa ditumpuk,kasih jeda 2 menit setelah sukses<br>~ Hanya bisa untuk XL<br>~ masa aktif 30hari',
+                            subcategoryDescription: 'PAKET OPEN jAM 06.00-22.00. Cek OTP kamu <a href="https://verfikasi.my.id" target="_blank">https://verfikasi.my.id</a>'
+                        },
+                        { 
+                            name: '40gb reguler 30hari [Rp 30.000]', 
+                            code: '5GBREG8X',
+                            perintah: 'ORDERMIN',
+                            price: '', 
+                            paymentMethods: ['tidak',], 
+                            description: '~ PAKET NON GARANSI<br>~ 40gb reguler+5gb<br>~ 5gb whatsapp didapat tergantung hoki<br>~ bisa ditumpuk,kasih jeda 2 menit setelah sukses<br>~ Hanya bisa untuk XL<br>~ masa aktif 30hari',
                             subcategoryDescription: 'PAKET OPEN jAM 06.00-22.00. Cek OTP kamu <a href="https://verfikasi.my.id" target="_blank">https://verfikasi.my.id</a>'
                         }
                     ],
@@ -696,7 +724,11 @@
                             subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL/AXIS'
                         }
                     ],
-                    REGULER_NON_OTP: [
+                }
+            },
+            paket_reguler: {
+                subcategories: {
+                   REGULER_NON_OTP:[
                         { 
                             name: '5gb reguler 30hari [Rp 7.000]', 
                             code: '5GBNONOTP',
@@ -704,7 +736,7 @@
                             price: '', 
                             paymentMethods: ['tidak',], 
                             description: '~ PAKET NON GARANSI<br>~ 5gb reguler<br>~ Hanya bisa untuk XL<br>~ tidak bisa ditumpuk<br>~ pastika melakukan order ulang setelah orderan pertama sukses/gagal<br>~ masa aktif 30hari',
-                            subcategoryDescription: 'PAKET NON GARANSI. tanpa perlu otp'
+                            subcategoryDescription: 'PAKET NON GARANSI.HANYA untuk XL'
                         },
                         { 
                             name: '10gb reguler 30hari [Rp 11.000]', 
@@ -715,9 +747,20 @@
                             description: '~ PAKET NON GARANSI<br>~ 10gb reguler<br>~ Hanya bisa untuk XL<br>~ tidak bisa ditumpuk<br>~ pastika melakukan order ulang setelah orderan pertama sukses/gagal<br>~ masa aktif 30hari',
                             subcategoryDescription: 'PAKET NON GARANSI. tanpa perlu otp'
                         },
+                        { 
+                            name: '15guler 30hari [Rp Rp 15.000]',
+                            code: '15GBNONOTP',
+                            perintah: 'ORDERMIN',
+                            price: '', 
+                            paymentMethods: ['tidak',], 
+                            description: '~ PAKET NON GARANSI<br>~ 10gb reguler<br>~ Hanya bisa untuk XL<br>~ tidak bisa ditumpuk<br>~ pastika melakukan order ulang setelah orderan pertama sukses/gagal<br>~ masa aktif 30hari',
+                            subcategoryDescription: 'PAKET NON GARANSI. tanpa perlu otp'
+                        }
                     ]
+
                 }
             }
+
         };
 
 
