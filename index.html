@@ -297,7 +297,7 @@
                 <option value="">-- Pilih Kategori --</option>
                 <option value="paket_otp">PAKET OTP</option>
                 <option value="paket_inject">PAKET INJECT (OTP)</option>
-                <option value="akrab_unli">AKRAB UNLIMITED</option>
+                <option value="unli_super">UNLIMITED SUPER</option>
                 <option value="paket_nonotp">AKRAB NON OTP</option>
             </select>
         </div>
@@ -527,17 +527,6 @@
                             description: '~ Wajib ada combo spesial<br>~ WhatsApp,Line,Gojek,YouTube,Instagram,Facebook<br>~ Perkiraan Fup 90-100GB<br>~ Sediakan e-wallet 13.500' 
                         }   
                     ],
-                    UNLIMITED_SUPER: [
-                        { 
-                            name: 'Extra unlimited super [Rp 35.000]', 
-                            code: 'XLUNLISUPER',
-                            perintah: 'ORDERMIN',
-                            price: '', 
-                            paymentMethods: ['dana', 'gopay'], 
-                            description: 'BACA SEBELUM ORDER<br>~ PAKET NON GARANSI<br>~ tidak boleh ada extra combo plus/spesial<br>~ delay kuota masuk hingga 2jam an<br>~ jika 1x24 jam kuota tidak masuk harap lapor<br>~ Kuota 1-8GB<br>~ kuota tidak full reguler<br>~ Unlimited wa,line,gojek,youtube,instagram,<br>facebook,tiktok,netflix<br>joox', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
-                        }
-                    ],
                     ADDON_COMBO_LITE: [
                         { 
                             name: 'Youtube, Facebook, Instagram [Rp 1.000]', 
@@ -565,6 +554,21 @@
                             paymentMethods: ['dana', 'gopay'], 
                             description: '~ Pastikan ADA paket xtra combo lite<br>~ Masa aktif mengikuti paket xtra combo lite<br>~ tidak bioleh ada paket addon xcl yang sama<br>~ sediakan e-wallet 6.000', 
                             subcategoryDescription: 'PAKET NON GARANSI. Cek OTP kamu <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
+                        }
+                    ]
+                }
+            },
+            unli_super: {
+                subcategories: {
+                    UNLIMITED_SUPER: [
+                        { 
+                            name: 'Extra unlimited super [Rp 35.000]', 
+                            code: 'XLUNLISUPER',
+                            perintah: 'ORDERMIN',
+                            price: '', 
+                            paymentMethods: ['tidak'], 
+                            description: 'BACA SEBELUM ORDER<br>~ PAKET NON GARANSI<br>~ tidak boleh ada extra combo plus/spesial<br>~ delay kuota masuk hingga 2jam an<br>~ jika 1x24 jam kuota tidak masuk harap lapor<br>~ Kuota 1-8GB<br>~ kuota tidak full reguler<br>~ Unlimited wa,line,gojek,youtube,instagram,<br>facebook,tiktok,netflix<br>joox', 
+                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
                         }
                     ]
                 }
