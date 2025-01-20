@@ -334,18 +334,16 @@
             <input type="text" id="phone" placeholder="Nomor Tujuan">
         </div>
 
-        <!-- Kontainer Tombol Beli dan WhatsApp -->
-<div class="button-container">
-    <!-- Tombol Beli Sekarang -->
-    <button class="buy-button" id="buyNowButton" onclick="submitForm()">Beli Sekarang</button>
-
-    <!-- Tombol Beli APK Premium -->
-    <button class="buy-button" id="buyPremiumButton" onclick="submitPremiumForm()" style="display: none;">Beli APK Premium</button>
-
-    <!-- Tombol WhatsApp -->
-    <button class="whatsapp-button" onclick="redirectToWhatsAppGroup()">Join Komunitas</button>
-</div>
-    </div>
+        <div class="button-container">
+            <!-- Tombol Beli Sekarang -->
+            <button class="buy-button" id="buyNowButton" onclick="submitForm()">Beli Sekarang</button>
+        
+            <!-- Tombol Beli APK Premium -->
+            <button class="buy-button" id="buyPremiumButton" onclick="submitPremiumForm()" style="display: none;">Beli APK Premium</button>
+        
+            <!-- Tombol WhatsApp -->
+            <button class="whatsapp-button" onclick="redirectToWhatsAppGroup()">Join Komunitas</button>
+        </div>        
     
     <script>
 
@@ -977,7 +975,7 @@
                         { 
                             name: 'Canva PRO (30 hari) - Rp 3.000', 
                             code: 'CANVAPRO1B',
-                            perintah: 'ORDERMIN',
+                            perintah: 'ORDERMIN2',
                             price: '', 
                             paymentMethods: ['tidak'], 
                             description: 'BACA SEBELUM ORDER<br> isi nomor Tujuan dengan gmail yang tertaut canva<br> Berlaku 30hari<br> setelah orderan sukses,cek gmail<br> dan terima undangan nya'
@@ -994,6 +992,9 @@ const subcategoryDescription = document.getElementById('subcategoryDescription')
 const paymentSection = document.getElementById('paymentSection');
 const paymentList = document.getElementById('paymentList');
 let selectedPaymentMethod = null;
+
+const buyNowButton = document.getElementById('buyNowButton');
+const buyPremiumButton = document.getElementById('buyPremiumButton');  // Ambil tombol Beli APK Premium
 
 categorySelect.addEventListener('change', function() {
     const category = this.value;
@@ -1015,9 +1016,18 @@ categorySelect.addEventListener('change', function() {
     } else {
         subcategorySelect.disabled = true;
     }
+
+    // Logika untuk menampilkan tombol Beli APK Premium jika kategori yang dipilih adalah 'apk_premium'
+    if (category === 'apk_premium') {
+        buyNowButton.style.display = 'none';  // Sembunyikan tombol "Beli Sekarang"
+        buyPremiumButton.style.display = 'inline-block';  // Tampilkan tombol "Beli APK Premium"
+    } else {
+        buyNowButton.style.display = 'inline-block';  // Tampilkan tombol "Beli Sekarang"
+        buyPremiumButton.style.display = 'none';  // Sembunyikan tombol "Beli APK Premium"
+    }
 });
 
-        // Update event listener untuk subkategori dan produk
+// Update event listener untuk subkategori dan produk
 subcategorySelect.addEventListener('change', function() {
     const category = categorySelect.value;
     const subcategory = this.value;
@@ -1043,7 +1053,7 @@ subcategorySelect.addEventListener('change', function() {
         productSelect.disabled = true;
     }
 });
-        // Update event listener untuk produk
+
 productSelect.addEventListener('change', function() {
     const category = categorySelect.value;
     const subcategory = subcategorySelect.value;
@@ -1119,7 +1129,8 @@ function submitForm() {
             const groupLink = "https://chat.whatsapp.com/LLLDMls3vnG6pw1RwEiNb3"; // Ganti dengan link grup WhatsApp kamu
             window.open(groupLink, '_blank');
         }
-        function submitPremiumForm() {
+        
+    function submitPremiumForm() {
     const category = categorySelect.value;
     const subcategory = subcategorySelect.value;
     const productCode = productSelect.value;
