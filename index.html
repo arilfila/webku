@@ -1104,10 +1104,10 @@ function submitForm() {
     // Cek apakah payment method ada
     if (selectedPaymentMethod !== 'tidak') {
         // Gabungkan parameter dengan titik satu kali, pastikan tidak ada titik ganda
-        message = `${perintah} ${productCode} ${phone} ${selectedPaymentMethod}`;
+        message = `${perintah} ${productCode}.${phone}.${selectedPaymentMethod}`;
     } else {
         // Jika payment method tidak dipilih, hanya gabungkan perintah, kode produk, dan nomor tujuan
-        message = `${perintah} ${productCode} ${phone}`;
+        message = `${perintah} ${productCode}.${phone}`;
     }
 
     const phoneNumber = '6287717272676';  // Ganti dengan nomor WhatsApp yang sesuai
