@@ -3,1278 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Pembelian</title>
+    <title>Cek Area Akrab</title>
     <style>
-        /* Background Gradasi Bergerak */
-        @keyframes gradientMove {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-    
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(45deg, #841288, #126e5f, #126e5f, #841288);
-            background-size: 400% 400%;
-            animation: gradientMove 10s ease infinite;
-            color: #333;
+            background-color: #f5f5f5;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-direction: column;
-            height: 100vh;
-            overflow-x: hidden;
-        }
-    
-        .header {
-            background-color: #008388;
-            color: white;
-            width: 100%;
-            text-align: center;
-            padding: 15px 0;
-            font-size: 32px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-/* Background Gradasi Bergerak untuk .container */
-@keyframes containerGradientMove {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.container {
-    background: linear-gradient(45deg, #841288, #83cfc3, #83cfc3, #841288);
-    background-size: 400% 400%;
-    animation: containerGradientMove 10s ease infinite;
-    padding: 30px;
-    width: 100%;
-    max-width: 600px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 80px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    z-index: 900;
-    flex-grow: 1;
-    max-height: 80vh;
-    overflow-y: auto;
-    border: 2px solid #f0f0f0; /* Soft border for elegance */
-}
-
-/* Menyusun logo agar berada di tengah */
-.logo-container {
-    text-align: center;
-    margin-bottom: 20px; /* Memberikan ruang di bawah logo */
-}
-
-/* Pengaturan ukuran logo */
-.logo {
-    width: 200px; /* Atur lebar sesuai keinginan (misalnya 300px) */
-    height: auto; /* Biarkan tinggi mengikuti proporsi gambar */
-    max-width: 50%; /* Agar gambar tidak melebihi lebar kontainer */
-    max-height: 200px; /* Anda dapat mengatur tinggi maksimal logo (misalnya 200px) */
-}
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
 
         h1 {
             text-align: center;
-            color: #2114d6;
+            color: #2c3e50;
+            font-size: 28px;
+            font-weight: 600;
             margin-bottom: 20px;
         }
-    
-        .section {
+
+        /* Deskripsi bagian atas */
+        .description {
+            font-size: 18px;
+            color: #34495e;
+            text-align: center;
             margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
+            font-weight: 500;
         }
-    
-        label {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 8px;
-            display: block;
-            color: #555;
+
+        .input-container {
+            margin-bottom: 30px;
+            text-align: center;
         }
-    
-        select, input[type="text"], button {
-            width: 100%;
+
+        input[type="text"] {
+            width: 80%;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 18px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        button {
+            width: 80%;
             padding: 12px;
-            border: 1px solid #000000;
+            background-color: #3498db;
+            color: white;
+            border: none;
             border-radius: 8px;
             font-size: 16px;
-            margin-top: 8px;
-            display: inline-block;
-        }
-    
-        button {
-            background-color: #2114d6;
-            color: white;
-            font-size: 14px;
-            font-weight: normal;
             cursor: pointer;
-            transition: background-color 0.3s ease;
             margin-top: 10px;
-            width: auto;
-            padding: 6px 15px;
-            border-radius: 20px;
-            text-align: center;
         }
-    
+
         button:hover {
-            background-color: #29cf00;
+            background-color: #2980b9;
         }
-    
-        /* Kontainer untuk tombol "Beli Sekarang" dan WhatsApp */
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px; /* Jarak antar tombol */
+
+        .area-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: background-color 0.3s;
         }
-    
-        /* Tombol WhatsApp */
-        .whatsapp-button {
-            background-color: #0bc224;
-            color: white;
-            font-size: 14px;
-            cursor: pointer;
-            padding: 12px 15px;
-            border-radius: 20px;
-            text-align: center;
-            border: none;
-            text-transform: uppercase;
-            flex: 1;
+
+        .area-section:hover {
+            background-color: #e3e9f0;
         }
-    
-        .whatsapp-button:hover {
-            background-color: #09ff00;
-        }
-    
-        /* Tombol Beli Sekarang */
-        .buy-button {
-            background-color: #2114d6;
-            color: white;
-            font-size: 14px;
-            font-weight: normal;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            padding: 6px 15px;
-            border-radius: 20px;
-            text-align: center;
-            flex: 1;
-        }
-    
-        .buy-button:hover {
-            background-color: #29cf00;
-        }
-    
-        /* Styling untuk tombol yang dipilih (method yang sudah dipilih) */
-        .selected-payment {
-            background-color: #29cf00; /* Warna hijau saat dipilih */
-            color: white; /* Warna teks putih */
-            border: 1px solid #29cf00; /* Border yang konsisten dengan warna hijau */
-        }
-    
-        /* Responsif untuk perangkat mobile */
-        @media screen and (max-width: 768px) {
-            .container {
-                padding: 15px;
-                margin-top: 80px;
-                width: 90%;
-            }
-    
-            .header {
-                font-size: 24px;
-                padding: 12px 0;
-            }
-        }
-    
-        #productPrice {
-            font-size: 20px; /* Ukuran font lebih besar */
-            font-weight: bold; /* Membuat teks lebih tebal */
-            color: #FF6347; /* Memberi warna yang mencolok (misalnya, merah tomat) */
-            background-color: #FFF8DC; /* Memberikan latar belakang sedikit kuning untuk kontras */
-            padding: 10px; /* Memberi padding untuk jarak antara teks dan batas */
-            border-radius: 8px; /* Memberikan sudut yang melengkung */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Memberikan bayangan halus di sekitar harga */
-            margin-top: 15px; /* Menambahkan jarak antara harga dan elemen lainnya */
-            text-align: center; /* Menempatkan harga di tengah */
-        }
-    
-        /* Styling untuk deskripsi produk */
-        #productDescription {
-            font-size: 16px; /* Ukuran font standar untuk deskripsi */
-            color: #555; /* Warna teks abu-abu untuk deskripsi */
-            line-height: 1.6; /* Jarak antar baris yang nyaman dibaca */
-            padding: 15px; /* Memberikan jarak dalam deskripsi */
-            background-color: #f9f9f9; /* Latar belakang yang lebih terang */
-            border-radius: 8px; /* Sudut melengkung */
-            box-sizing: border-box;
-            margin-top: 10px; /* Memberikan jarak antara deskripsi dan elemen lainnya */
-        }
-    
-        .cekstock-button {
-            background-color: #fc0000;
-            color: white;
-            font-size: 10px;
-            cursor: pointer;
-            padding: 7px 10px;
-            border-radius: 20px;
-            text-align: center;
-            border: none;
-            text-transform: uppercase;
-            flex: 1;
-            margin-top: 5px;
+
+        .area-section h2 {
+            margin: 0;
+            padding: 0;
+            font-size: 22px;
+            color: #2980b9;
             margin-bottom: 15px;
+            font-weight: 500;
         }
-    
-        .cekstock-button:hover {
-            background-color: #b40000;
-        }
-    
-        .deposit-button {
-            background-color: #d9ff02;
-            color: rgb(0, 0, 0);
-            font-size: 14px;
-            font-weight: normal;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+
+        .area-list {
             margin-top: 10px;
-            width: auto;
-            padding: 6px 15px;
-            border-radius: 20px;
+        }
+
+        .area-item {
+            padding: 12px;
+            margin: 6px 0;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .area-item:hover {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .no-result {
+            color: #e74c3c;
+            font-style: italic;
             text-align: center;
         }
-    
-        .deposit-button:hover {
-            background-color: #99b400;
+
+        .area-section .area-list {
+            padding-left: 0;
         }
-    </style>    
+
+        .area-item {
+            list-style-type: none;
+        }
+
+    </style>
 </head>
 <body>
 
-    <div class="header">
-        SRC SHOP
+<div class="container">
+    <h1>Cek Area Akrab</h1>
+
+    <!-- Deskripsi tentang Area Akrab -->
+    <div class="description">
+        Area Akrab adalah lokasi domisili yang terdeteksi oleh paket Akrab untuk pengisian kuota. Setiap area memiliki kuota yang berbeda-beda, tergantung pada wilayahnya.
     </div>
 
-    <div class="container">
-        <div class="logo-container">
-            <img src="logo.png" alt="SRC STORE Logo" class="logo">
-        </div>  
-        <button onclick="toggleInfo()">BACA INI!</button>
-        <button class="deposit-button" onclick="window.location.href='deposit.html';">Deposit</button>
-        
-        <div class="info-text" id="infoText">
-            <p>Ini adalah panel web otomatis berikut cara penggunaannya :<br>1. Masukkan data ke kolom serta pilih kategori dan produknya<br>2. Periksa lagi bahwa data dan produk yang dipilih sudah benar<br>3. Klik BELI untuk membeli produk, nanti akan diarahkan ke WhatsApp<br>4. Setelah di WhatsApp, kirim pesan yang sudah disusun otomatis oleh sistem ke nomor BOT<br>5. Maka pesanan akan diproses otomatis oleh system<br><br>SEMUA PESANAN DIPROSES OLEH SYSTEM ON 24 JAM</p>
-        </div>
-
-        <!-- Kategori Utama -->
-        <div class="section">
-            <label for="category">Pilih Kategori:</label>
-            <select id="category">
-                <option value="">-- Pilih Kategori --</option>
-                <option value="paket_xl">PAKET XL (OTP)</option>
-                <option value="paket_xl_nonotp">PAKET XL (NON OTP)</option>
-                <option value="paket_axis_nonotp">PAKET AXIS (NON OTP)</option>
-                <option value="apk_premium">APK PREMIUM</option>
-            </select>
-        </div>
-
-        <!-- Sub-Kategori -->
-        <div class="section">
-            <label for="subcategory">Pilih Sub-Kategori:</label>
-            <select id="subcategory" disabled>
-                <option value="">-- Pilih Sub-Kategori --</option>
-                <option value="pengelola_akrab">PENGELOLA AKRAB</option>
-            </select>
-            <div id="subcategoryDescription" style="margin-top: 10px; color: #555; font-size: 17px;"></div>
-        </div>
-
-        <!-- Produk -->
-        <div class="section">
-            <label for="product">Pilih Produk:</label>
-            <select id="product" disabled>
-                <option value="">-- Pilih Produk --</option>
-            </select>
-            <div id="productDescription" class="product-description-container"></div>
-        </div>
-        <button class="cekstock-button" onclick="window.open('https://wa.me/6287717272676?text=cekstock', '_blank');">Cek stock Akrab</button>
-
-        <!-- Metode Pembayaran -->
-        <div id="paymentSection" style="display: none;">
-            <h3>Pilih Metode Pembayaran:</h3>
-            <ul id="paymentList"></ul>
-        </div>
-
-        <!-- Input No HP -->
-        <div class="section">
-            <label for="phone">Nomor Tujuan:</label>
-            <input type="text" id="phone" placeholder="Nomor Tujuan">
-        </div>
-
-        <div class="button-container">
-            <!-- Tombol Beli Sekarang -->
-            <button class="buy-button" id="buyNowButton" onclick="submitForm()">Beli Sekarang</button>
-        
-            <!-- Tombol Beli APK Premium -->
-            <button class="buy-button" id="buyPremiumButton" onclick="submitPremiumForm()" style="display: none;">Beli APK Premium</button>
-        
-            <!-- Tombol WhatsApp -->
-            <button class="whatsapp-button" onclick="redirectToWhatsAppGroup()">Join Komunitas</button>
-        </div>        
+    <div class="input-container">
+        <input type="text" id="locationInput" placeholder="Masukkan kabupaten anda..." oninput="cekArea()"/>
+    </div>
     
-    <script>
+    <div id="result"></div>
+</div>
 
-        let isInfoVisible = true;
+<script>
+    const lokasiData = {
+        "Banten": {
+            "Area 1": ["Kota Tangerang", "Kota Tangerang Selatan", "Kota Serang"],
+            "Area 2": ["Kab. Lebak", "Kab. Pandeglang", "Kab. Serang"],
+            "Area 3": ["Kab. Kepulauan Seribu"]
+        },
+        "Jawa Barat": {
+            "Area 1": ["Kab. Bandung", "Kab. Bandung Barat", "Kab. Kuningan", "Kab. Purwakarta", "Kota Cimahi", "Kota Bandung", "Kab. Subang"],
+            "Area 2": ["Kab. Garut", "Kab. Cirebon", "Kota Cirebon", "Kab. Indramayu"],
+            "Area 3": ["Kab. Ciamis", "Kab. Pangandaran", "Kab. Tasikmalaya", "Kota Banjar", "Kota Tasikmalaya", "Kota Depok", "Kab. Sumedang", "Kab. Bogor", "Kota Bogor", "Kota Bekasi", "Kab. Bekasi"],
+            "Area 4": ["Kab. Cianjur", "Kab. Karawang", "Kota Sukabumi", "Kab. Sukabumi"]
+        },
+        "Jawa Tengah": {
+            "Area 1": ["Kab. Boyolali", "Kota Surakarta", "Kab. Cilacap", "Kab. Kebumen", "Kota Semarang", "Kota Salatiga"],
+            "Area 2": ["Kab. Tegal", "Kab. Semarang", "Kota Tegal", "Kab. Brebes"],
+            "Area 3": ["Kab. Blora", "Kab. Rembang"],
+            "Area 4": ["Kab. Sukoharjo", "Kab. Purbalingga", "Kab. Klaten", "Kab. Wonogiri"]
+        },
+        // Tambahkan data lokasi lainnya sesuai dengan contoh data yang diberikan
+    };
 
-        function toggleInfo() {
-            const infoText = document.getElementById('infoText');
-            isInfoVisible = !isInfoVisible;
-            infoText.style.display = isInfoVisible ? 'block' : 'none';
-        }
+    function tampilkanSemuaLokasi() {
+        const resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = ""; // Reset hasil pencarian
 
-        const products = {
-            paket_xl: {
-                subcategories: {
-                    AKRAB_PENGELOLA: [
-                        { 
-                            name: 'Unlock anggota tambahan Akrab [Rp 0]', 
-                            code: 'XAA1',
-                            perintah: 'ORDERVERIF',
-                            price: '', 
-                            paymentMethods: ['pulsa'], 
-                            description: '~ Unlock Anggota tambahan akrab<br>~ Sediakan pulsa 20.000', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://myxl.nfime.xyz" target="_blank">https://myxl.nfime.xyz</a>'
-                        },
-                        { 
-                            name: 'Pengelola Akrab S [Rp 10.000]', 
-                            code: 'PS40',
-                            perintah: 'ORDERVERIF',
-                            price: '', 
-                            paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '~ Pengelola akrab S<br>~ Sediakan pulsa/e-wallet 34.000' 
-                        },
-                        { 
-                            name: 'Pengelola Akrab L [Rp 12.000]',
-                            code: 'PL40', 
-                            perintah: 'ORDERVERIF',
-                            price: '', 
-                            paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '~ Pengelola akrab L<br>~ beli di jam tengah malam agar mendapat reward (ga ada jaminan)<br>~ Sediakan pulsa/e-wallet 108.000' 
-                        },
-                        { 
-                            name: 'Pengelola Akrab XL [Rp 15.000]', 
-                            code: 'PXL40',
-                            perintah: 'ORDERVERIF',
-                            price: '', 
-                            paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '~ Pengelola akrab XL<br>~ beli di jam tengah malam agar mendapat reward (ga ada jaminan)<br>~ Sediakan pulsa/e-wallet 168.000' 
-                        },
-                        { 
-                            name: 'Pengelola Akrab XXL [Rp 15.000]', 
-                            code: 'PXXL40',
-                            perintah: 'ORDERVERIF',
-                            price: 'Rp 15.000', 
-                            paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '~ Pengelola akrab XXL<br>~ beli di jam tengah malam agar mendapat reward (ga ada jaminan)<br>~ Sediakan pulsa/e-wallet 270.000' 
-                        }
-                        
-                    ],
-                    AKRAB_PENGELOLA_V2: [
-                        { 
-                            name: 'Pengelola Akrab XL [Rp 10.000]', 
-                            code: 'PXL10',
-                            perintah: 'ORDERMIN',
-                            price: '', 
-                            paymentMethods: ['pulsa',], 
-                            description: '~ Pengelola akrab XL<br>~ beli di jam tengah malam agar mendapat reward (ga ada jaminan)<br>~ Sediakan pulsa 168.000',
-                            subcategoryDescription: 'PAKET OPEN jAM 06.00-22.00. Harus OTP di <a href="https://verfikasi.my.id" target="_blank">https://verfikasi.my.id</a>'
-                        },
-                        { 
-                            name: 'Pengelola Akrab XXL [Rp 10.000]', 
-                            code: 'PXXL10',
-                            perintah: 'ORDERMIN',
-                            price: '', 
-                            paymentMethods: ['pulsa',], 
-                            description: '~ Pengelola akrab XXL<br>~ beli di jam tengah malam agar mendapat reward (ga ada jaminan)<br>~ Sediakan pulsa 270.000' 
-                        }
-                        
-                    ],
-                    EXTRA_COMBO_FLEX: [
-                        { 
-                            name: ' Xtra Combo Flex S [Rp 3.000]', 
-                            code: '981d99ae-1bab-40b3-aa3b-b717f7eb3a2f',
-                            perintah: 'ORDERCUAN',
-                            price: '', 
-                            paymentMethods: ['pulsa', 'dana', 'gopay'], 
-                            description: '~ Kuota Utama 1.5GB<br>~ Kuota Area (Berdasarkan Area)<br>~ Masa aktif 30hari<br>~ Untuk claim addon<br>~ sediakan pulsa/e-wallet 16000',
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
-                        }
-                    ],
-                    EXTRA_COMBO_PLUS: [
-                        { 
-                            name: '[method dana]Xtra Combo Plus 5gb [Rp 3500]', 
-                            code: '62a49f0f7585e542fc195914ee11d2de',
-                            perintah: 'ORDERKM',
-                            price: '', 
-                            paymentMethods: ['dana', 'gopay', 'pulsa'], 
-                            description: '~ kuota utama 4-5GB<br>~ whatsapp 50MB/hari<br>~ di atas blue dapet myReward<br>~ sediakan pulsa/e-wallet 28.000', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://nomorxlku.my.id/?sc=26102679380e3083112897edd42bb66a" target="_blank">https://nomorxlku.my.id/?sc=26102679380e3083112897edd42bb66a</a>'
-                        },
-                        { 
-                            name: '[method dana]Xtra Combo Plus 10GB unlimited apps produktivitas [Rp 7.000]', 
-                            code: '97520d9ebea7d72cec0ae29e7b65e1fc',
-                            perintah: 'ORDERCUAN',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: '~ kuota utama 10GB<br>~ Unlimited Apps Produktivitas persis Biz untuk Inject SSH/VPN<br>~ Sediakan pulsa/e-wallet 64.000' 
-                        },
-                        { 
-                            name: '● XCP - YouTube 7GB [Rp 1.000]', 
-                            code: 'ADN_XCP_YT_7GB_0_P',
-                            perintah: 'ORDERKM',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: '~ Harus ada paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ asa aktif paket mengikuti sisa masa aktif paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ Tidak dapat diakumulasi<br>~ Jika tidak dapat dibeli, silakan coba secara berkala',
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://nomorxlku.my.id/?sc=26102679380e3083112897edd42bb66a" target="_blank">https://nomorxlku.my.id/?sc=26102679380e3083112897edd42bb66a</a>'
-                        },
-                        { 
-                            name: '●[method dana] XCP - YouTube 15GB [Rp 1.000]', 
-                            code: 'ADN_XCP_YT_15GB_5K_D',
-                            perintah: 'ORDERCUAN',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: '~ Harus ada paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ masa aktif paket mengikuti sisa masa aktif paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ Tidak dapat diakumulasi<br>~ Jika tidak dapat dibeli, silakan coba secara berkala'
-                        },
-                        { 
-                            name: '●[method dana] XCP - TikTok 15GB [Rp 1.000]', 
-                            code: 'ADN_XCP_TT_15GB_5K_D',
-                            perintah: 'ORDERKM',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: '~ Harus ada paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ masa aktif paket mengikuti sisa masa aktif paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ Tidak dapat diakumulasi<br>~ Jika tidak dapat dibeli, silakan coba secara berkala<br>~ Sediakan pulsa/e-wallet 5.000'
-                        },
-                        { 
-                            name: '●[method dana] XCP - Facebook 15GB [Rp 1.000]', 
-                            code: 'ADN_XCP_FB_15GB_5K_D',
-                            perintah: 'ORDERKM',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: '~ Harus ada paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ masa aktif paket mengikuti sisa masa aktif paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ Tidak dapat diakumulasi<br>~ Jika tidak dapat dibeli, silakan coba secara berkala<br>~ Sediakan pulsa/e-wallet 5.000'
-                        },
-                        { 
-                            name: '●[method dana] XCP - Instagram 15GB [Rp 1.000]', 
-                            code: 'ADN_XCP_IG_15GB_5K_D',
-                            perintah: 'ORDERKM',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: '~ Harus ada paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ masa aktif paket mengikuti sisa masa aktif paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ Tidak dapat diakumulasi<br>~ Jika tidak dapat dibeli, silakan coba secara berkala<br>~ Sediakan pulsa/e-wallet 5.000'
-                        },
-                        { 
-                            name: '●[method dana] XCP - WhatsApp 15GB [Rp 1.000]', 
-                            code: 'ADN_XCP_WA_15GB_5K_D',
-                            perintah: 'ORDERKM',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: '~ Harus ada paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ masa aktif paket mengikuti sisa masa aktif paket Xtra Combo Plus/Xtra Combo VIP Plus<br>~ Tidak dapat diakumulasi<br>~ Jika tidak dapat dibeli, silakan coba secara berkala<br>~ Sediakan pulsa/e-wallet 5.000'
-                        }
-                    ],
-                    EXTRA_COMBO_PLUS_0KB: [
-                        { 
-                            name: 'Xtra Combo Plus 0kb [Rp 5.000]', 
-                            code: 'XCP0KB',
-                            perintah: 'ORDERMIN',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: '<br>~ KHUSUS NOMOR BERUSIA DIBAWAH 4BULAN<br>~ nomor wajib belum pernah beli xcp<br>~ kuota utama 0GB<br>~ whatsapp 50MB/hari<br>~ YTTA AJA<br>~ Tidak semua nomor bisa', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://otp.lanciaw.biz.id/" target="_blank">https://otp.lanciaw.biz.id/</a>'
-                        }
-                    ],
-                    EXTRA_CPLUS_APPS: [
-                        { 
-                            name: 'Xtra Cplus APPS [Rp 15.000]', 
-                            code: 'XTRACPLUS+APPS',
-                            perintah: 'ORDERMIN',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: '~ kuota utama 0-6GB kalau hoki<br>~ whatsapp 15gb<br>~ Instagram 15gb<br>~ Facebook 15gb<br>~ Youtube 15gb<br>~ TikTok 15gb<br>~ Jangan ada extra combo di nomor<br>~ Tidak semua nomor bisa', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://verfikasi.my.id/" target="_blank">https://verfikasi.my.id/</a>'
-                        }
-                    ],
-                    EXTRA_COMBO_SPESIAL: [
-                        { 
-                            name: 'Xtra Combo Special [Rp 4.500]', 
-                            code: '2eef0863-87a9-4f6c-84ae-7e2d9db21aec',
-                            perintah: 'ORDERCUAN',
-                            price: '', 
-                            paymentMethods: ['dana', 'gopay'], 
-                            description: '~ Kuota up to 8GB<br>~ kuota tidak full reguler<br>~ untuk gandeng addon XCS<br>~ sediakan e-wallet DANA 16.850', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
-                        },
-                        { 
-                            name: 'Addon XCS BASIC [Rp GRATIS]', 
-                            code: '85f6ec43-b922-4e46-b64c-ba9d4a75cef3',
-                            perintah: 'ORDERCUAN',
-                            price: '', 
-                            paymentMethods: ['dana', 'gopay'], 
-                            description: '~ Wajib ada combo spesial<br>~ WhatsApp,Line,Gojek<br>~ Perkiraan Fup 20-30GB<br>~ Sediakan e-wallet 500' 
-                        },
-                        { 
-                            name: 'Addon XCS STANDART [Rp 1.000]', 
-                            code: '9ed954f6-5375-406d-a6d5-ba6e36d5603d',
-                            perintah: 'ORDERCUAN',
-                            price: '', 
-                            paymentMethods: ['dana', 'gopay'], 
-                            description: '~ Wajib ada combo spesial<br>~ WhatsApp,Line,Gojek,Facebook<br>~ Perkiraan Fup 40-50GB<br>~ Sediakan e-wallet 3.000' 
-                        },
-                        { 
-                            name: 'Addon XCS SUPER [Rp 1.000]', 
-                            code: 'd7ece7c4-2645-4c1a-ba22-a44e3b82a39b',
-                            perintah: 'ORDERCUAN',
-                            price: '', 
-                            paymentMethods: ['dana', 'gopay'], 
-                            description: '~ Wajib ada combo spesial<br>~ WhatsApp,Line,Gojek,Instagram,Facebook<br>~ Perkiraan Fup 50-75GB<br>~ Sediakan e-wallet 8.500' 
-                        },
-                        { 
-                            name: 'Addon XCS PREMIUM [Rp 1.000]', 
-                            code: '1b51df3a-5874-46e6-a3c0-4fa319a3a3a9',
-                            perintah: 'ORDERCUAN',
-                            price: '', 
-                            paymentMethods: ['dana', 'gopay'], 
-                            description: '~ Wajib ada combo spesial<br>~ WhatsApp,Line,Gojek,YouTube,Instagram,Facebook<br>~ Perkiraan Fup 90-100GB<br>~ Sediakan e-wallet 13.500' 
-                        }   
-                    ],
-                    MASA_AKTIF_XL: [
-                        { 
-                            name: 'Masa AKtif XL 1th [Rp 15.000]', 
-                            code: 'MASIF_1TH',
-                            perintah: 'ORDERMIN',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER!!!<br>~ masuk berupa paket (gabisa dipakai)i<br>~ masa aktif paket 12 bulan<br>~ <br>~ Masa Aktif akan diperpanjang setiap bulan<br>~ <br>~ Masa aktif kartu akan ngikut<br>~ Hanya Bisa Untuk XL<br>~ NON GARANSI', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://verfikasi.my.id/" target="_blank">https://verfikasi.my.id/</a>'
-                        }
-                    ],
-                    ADDON_COMBO_LITE: [
-                        { 
-                            name: 'Youtube, Facebook, Instagram [Rp 1.000]', 
-                            code: '87cb032d-035e-4278-a5dd-ac9a50b4bb42',
-                            perintah: 'ORDERCUAN',
-                            price: '', 
-                            paymentMethods: ['dana', 'gopay'], 
-                            description: '~ Pastikan ADA paket xtra combo lite<br>~ Masa aktif mengikuti paket xtra combo lite<br>~ tidak bioleh ada paket addon xcl yang sama<br>~ sediakan e-wallet 6.000', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
-                        },
-                        { 
-                            name: 'Video, Facebook, Instagram [Rp 1.000]', 
-                            code: 'cee0d84a-80d0-4121-8b70-f16f0477fd01',
-                            perintah: 'ORDERCUAN',
-                            price: '', 
-                            paymentMethods: ['dana', 'gopay'], 
-                            description: '~ Pastikan ADA paket xtra combo lite<br>~ Masa aktif mengikuti paket xtra combo lite<br>~ tidak bioleh ada paket addon xcl yang sama<br>~ sediakan e-wallet 6.000', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Cek OTP kamu <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
-                        },  
-                        { 
-                            name: 'Netflix, Facebook, Instagram [Rp 1.000]', 
-                            code: '7feb1b1d-9323-4171-ae1a-2aae26aa8761',
-                            perintah: 'ORDERCUAN',
-                            price: '', 
-                            paymentMethods: ['dana', 'gopay'], 
-                            description: '~ Pastikan ADA paket xtra combo lite<br>~ Masa aktif mengikuti paket xtra combo lite<br>~ tidak bioleh ada paket addon xcl yang sama<br>~ sediakan e-wallet 6.000', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Cek OTP kamu <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
-                        }
-                    ],
-                    UNLIMITED_SUPER: [
-                        { 
-                            name: 'Extra unlimited super [Unlimited wa,line,gojek,youtube,instagram,facebook,tiktok,netflix,dan joox] - Rp 35.000', 
-                            code: 'UNLI_SUPER',
-                            perintah: 'ORDERMIN',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>~ PAKET NON GARANSI<br>~ tidak boleh ada extra combo plus/spesial<br>~ delay kuota masuk hingga 2jam an<br>~ jika 1x24 jam kuota tidak masuk harap lapor<br>~ Kuota 1-8GB<br>~ kuota tidak full reguler<br>~ Unlimited wa,line,gojek,youtube,instagram,<br>facebook,tiktok,netflix<br>joox', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
-                        },
-                        { 
-                            name: 'Extra unlimited Medium [Unlimited wa,line,gojek,youtube,instagram,dan facebook] - Rp 28.000', 
-                            code: 'UNLI_MEDIUM',
-                            perintah: 'ORDERMIN',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>~ PAKET NON GARANSI<br>~ tidak boleh ada extra combo plus/spesial<br>~ delay kuota masuk hingga 2jam an<br>~ jika 1x24 jam kuota tidak masuk harap lapor<br>~ Kuota 1-8GB<br>~ kuota tidak full reguler<br>~ Unlimited wa,line,gojek,youtube,instagram,<br>facebook', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
-                        },
-                        { 
-                            name: 'Extra unlimited Mini [Unlimited Tiktok,Netflix,dan Viu] - Rp 27.000', 
-                            code: 'UNLI_MINI',
-                            perintah: 'ORDERMIN',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>~ PAKET NON GARANSI<br>~ tidak boleh ada extra combo plus/spesial<br>~ delay kuota masuk hingga 2jam an<br>~ jika 1x24 jam kuota tidak masuk harap lapor<br>~ Kuota 1-8GB<br>~ kuota tidak full reguler<br>~ Unlimited Tiktok,Netflix,Viu', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
-                        },
-                        { 
-                            name: 'Extra unlimited TIKTOK [Unlimited Tiktok] - Rp 25.000', 
-                            code: 'UNLI_TT',
-                            perintah: 'ORDERMIN',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>~ PAKET NON GARANSI<br>~ tidak boleh ada extra combo plus/spesial<br>~ delay kuota masuk hingga 2jam an<br>~ jika 1x24 jam kuota tidak masuk harap lapor<br>~ Kuota 1-8GB<br>~ kuota tidak full reguler<br>~ Unlimited Tiktok', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
-                        },
-                        { 
-                            name: 'Extra unlimited VIU [Unlimited Viu] - Rp 25.000', 
-                            code: 'UNLI_VIU',
-                            perintah: 'ORDERMIN',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>~ PAKET NON GARANSI<br>~ tidak boleh ada extra combo plus/spesial<br>~ delay kuota masuk hingga 2jam an<br>~ jika 1x24 jam kuota tidak masuk harap lapor<br>~ Kuota 1-8GB<br>~ kuota tidak full reguler<br>~ Unlimited Viu', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
-                        }
-                    ],
-                    REGULER_HARIAN: [
-                        { 
-                            name: '2,8gb 2hari - Rp 4.000', 
-                            code: 'XLREG2,8',
-                            perintah: 'ORDERMIN',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>~ PAKET NON GARANSI<br>~ Paket full reguler 24jam<br>~ Kuota 2,8GB tanpa pembagian', 
-                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://verfikasi.my.id/" target="_blank">https://verfikasi.my.id/</a>'
-                        }
-                    ]
-                }
-            },           
-            paket_xl_nonotp: {
-                subcategories: {
-                    AKRAB_FULL_REGULER: [
-                        { 
-                            name: 'Akrab Anggota(Mega Big) [Rp 86.000]',
-                            code: 'XLBIGMEGA',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 93,5GB<br>Area 2 = 96,5GB<br>Area 3 = 107GB<br>Area 4 = 131GB<br>~ official, resmi, bergaransi<br>~ <br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL & AXIS'
-                        },
-                        { 
-                            name: 'Akrab Anggota(Super Big) [Rp 53.000]',
-                            code: 'XLBIGSUPER',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 25-27GB<br>Area 2 = 30-32GB<br>Area 3 = 43-55GB<br>Area 4 = 83-85GB<br>~ official, resmi, bergaransi<br>~ <br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL & AXIS'
-                        },
-                        { 
-                            name: 'Akrab Anggota(Super Mini) [Rp 42.000]',
-                            code: 'XLMINISUPER',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 14.5 - 16.5 GB<br>Area 2 = 17.5 - 19.5 GB<br>Area 3 = 28 - 30 GB GB<br>Area 4 = 52 - 54 GB GB<br>~ official, resmi, bergaransi<br>~ <br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: ''
-                        },
-                        { 
-                            name: 'Akrab Anggota(MINI) [Rp 51.000]',
-                            code: 'XLMINI',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 21 - 32.5 GB<br>Area 2 = 24 - 35.5 GB<br>Area 3 = 32 GB<br>Area 4 = 59 GB<br>~ jika masih ada Akrab,unreg dulu via myxl<br>~ GARANSI 30HARI<br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL/AXIS'
-                        },
-                        { 
-                            name: 'Akrab Anggota(BIG) [Rp 54.000]',
-                            code: 'XLBIG',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 33 GB<br>Area 2 = 35 GB<br>Area 3 = 47 GB<br>Area 4 = 73 GB<br>~ Jka bonus myRewards tidak masuk.. silahkan ajukan komplen setelah 1 x 24 jam.. untuk menghindari delay myXL<br>~ jika bonus myRewards tidak masuk.. akan di refund RP 5.000<br>~ jika masih ada Akrab,unreg dulu via myxl<br>~ GARANSI 30HARI<br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: ''
-                        },
-                        { 
-                            name: 'Akrab Anggota(LITE) [Rp 70.000]',
-                            code: 'XLJUMBOV2',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 47 GB<br>Area 2 = 52 GB<br>Area 3 = 85 GB<br>Area 4 = 105 GB<br>~ Jka bonus myRewards tidak masuk.. silahkan ajukan komplen setelah 1 x 24 jam.. untuk menghindari delay myXL<br>~ jika bonus myRewards tidak masuk.. akan di refund RP 5.000<br>~ jika masih ada Akrab,unreg dulu via myxl<br>~ GARANSI 30HARI<br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: ''
-                        },
-                        { 
-                            name: 'Akrab Anggota(JUMBO) [Rp 78.000]',
-                            code: 'XLJUMBO',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 65 GB<br>Area 2 = 70 GB<br>Area 3 = 83 GB<br>Area 4 = 123 GB<br>~ Jka bonus myRewards tidak masuk.. silahkan ajukan komplen setelah 1 x 24 jam.. untuk menghindari delay myXL<br>~ jika bonus myRewards tidak masuk.. akan di refund RP 5.000<br>~ jika masih ada Akrab,unreg dulu via myxl<br>~ GARANSI 30HARI<br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: ''
-                        },
-                        { 
-                            name: 'Akrab Orderan Fake [Rp 1.000.000]',
-                            code: 'TESAKRAB',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'JANGAN DI ORDER',
-                            price: ''
-                        }
-                    ],
-                    AKRAB_FULL_REGULER_V2: [
-                        { 
-                            name: 'Akrab Anggota(Mini Big) [Rp 39.000]',
-                            code: '8efaf01c-0684-4140-bce2-f8bc26d44aa6',
-                            perintah: 'ORDERCUAN2',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 14.5 - 16.5 GB<br>Area 2 = 17.5 - 19.5 GB<br>Area 3 = 28 - 30 GB GB<br>Area 4 = 52 - 54 GB GB<br>~ official, resmi, bergaransi<br>~ <br>~ Nomor wajib benar<br>~ Masa aktif 28-30hari',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL/AXIS'
-                        },
-                        { 
-                            name: 'Akrab Anggota(Mini Jumbo) [Rp 51.000]',
-                            code: 'a07404db-2428-4d99-95c6-069ee512e515',
-                            perintah: 'ORDERCUAN2',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 26 GB<br>Area 2 = 31 GB<br>Area 3 = 42 GB GB<br>Area 4 = 82 GB GB<br>~ official, resmi, bergaransi<br>~ <br>~ Nomor wajib benar<br>~ Masa aktif 28-30hari',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL/AXIS'
-                        }
-                    ],
-                    AKRAB_BEKASAN: [
-                        { 
-                            name: 'Akrab Anggota XL(5 hari) - Rp 8.000', 
-                            code: 'XLBEKASAN5',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 1.5 GB<br>AREA 2 = 4.5 GB<br>AREA 3 = 15 GB<br>AREA 4 = 39 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 5 hari (kalo hoki, bisa dapet yang 6 hari)', 
-                            subcategoryDescription: 'PAKET NON OTP BISA XL/AXIS'
-                        },
-                        { 
-                            name: 'Akrab Anggota XL(7 hari) - Rp 11.000', 
-                            code: 'XLBEKASAN7',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 1.5 GB<br>AREA 2 = 4.5 GB<br>AREA 3 = 15 GB<br>AREA 4 = 39 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 7 hari (kalo hoki, bisa dapet yang 8 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XL(9 hari) - Rp 14.000', 
-                            code: 'XLBEKASAN9',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 1.5 GB<br>AREA 2 = 4.5 GB<br>AREA 3 = 15 GB<br>AREA 4 = 39 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 9 hari (kalo hoki, bisa dapet yang 10 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XL(11 hari) - Rp 16.000', 
-                            code: 'XLBEKASAN11',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 1.5 GB<br>AREA 2 = 4.5 GB<br>AREA 3 = 15 GB<br>AREA 4 = 39 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 11 hari (kalo hoki, bisa dapet yang 12 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XL(13 hari) - Rp 18.000', 
-                            code: 'XLBEKASAN13',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 1.5 GB<br>AREA 2 = 4.5 GB<br>AREA 3 = 15 GB<br>AREA 4 = 39 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 13 hari (kalo hoki, bisa dapet yang 14 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XL(15 hari) - Rp 20.000', 
-                            code: 'XLBEKASAN15',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 1.5 GB<br>AREA 2 = 4.5 GB<br>AREA 3 = 15 GB<br>AREA 4 = 39 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 15 hari (kalo hoki, bisa dapet yang 16 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XXL(5 hari) - Rp 11.000', 
-                            code: 'XXLBEKASAN5',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 7.5 GB<br>AREA 2 = 12 GB<br>AREA 3 = 25 GB<br>AREA 4 = 65 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 5 hari (kalo hoki, bisa dapet yang 6 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XXL(7 hari) - Rp 14.000', 
-                            code: 'XXLBEKASAN7',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 7.5 GB<br>AREA 2 = 12 GB<br>AREA 3 = 25 GB<br>AREA 4 = 65 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 7 hari (kalo hoki, bisa dapet yang 8 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XXL(9 hari) - Rp 17.000', 
-                            code: 'XXLBEKASAN9',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 7.5 GB<br>AREA 2 = 12 GB<br>AREA 3 = 25 GB<br>AREA 4 = 65 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 9 hari (kalo hoki, bisa dapet yang 10 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XXL(11 hari) - Rp 19.000', 
-                            code: 'XXLBEKASAN11',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 7.5 GB<br>AREA 2 = 12 GB<br>AREA 3 = 25 GB<br>AREA 4 = 65 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 11 hari (kalo hoki, bisa dapet yang 12 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XXL(13 hari) - Rp 21.000', 
-                            code: 'XXLBEKASAN13',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 7.5 GB<br>AREA 2 = 12 GB<br>AREA 3 = 25 GB<br>AREA 4 = 65 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 13 hari (kalo hoki, bisa dapet yang 14 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XXL(15 hari) - Rp 24.000', 
-                            code: 'XXLBEKASAN15',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 7.5 GB<br>AREA 2 = 12 GB<br>AREA 3 = 25 GB<br>AREA 4 = 65 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 15 hari (kalo hoki, bisa dapet yang 16 hari)'
-                        },
-                    ],
-                    AKRAB_BEKASAN_V2: [
-                        { 
-                            name: '⚡ Akrab Bekasan 5-6h [Rp 9.000]',
-                            code: 'BKSAKRABXL',
-                            perintah: 'ORDERCUAN2',
-                            paymentMethods: ['balance'], 
-                            description: 'Area = 1,5 - 7,5 GB<br>~Area 2 = 4,5 - 12 GB<br>~Area 3 = 15 - 25 GB<br>Area 4 = 39 - 65 GB<br>~ NO DRAMA ( Bug pengelola, di kick sendiri, salah nomer, kena Riper/tipu )<br>~ official, resmi<br>~ <br>~ garansi berlaku jika tidak terkena bug apapun<br>~ Masa aktif antara 5-6hari',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL/AXIS'
-                        },
-                        { 
-                            name: '⚡ Akrab Bekasan 7-8h [Rp 12.000]',
-                            code: 'BKSAKRABXL',
-                            perintah: 'ORDERCUAN2',
-                            paymentMethods: ['balance'], 
-                            description: 'Area = 1,5 - 7,5 GB<br>~Area 2 = 4,5 - 12 GB<br>~Area 3 = 15 - 25 GB<br>Area 4 = 39 - 65 GB<br>~ NO DRAMA ( Bug pengelola, di kick sendiri, salah nomer, kena Riper/tipu )<br>~ official, resmi<br>~ <br>~ garansi berlaku jika tidak terkena bug apapun<br>~ Masa aktif antara 7-8hari',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL/AXIS'
-                        },
-                    ],
-                }
-            },
-            paket_axis_nonotp: {
-                subcategories: {
-                    AKRAB_FULL_REGULER: [
-                        { 
-                            name: 'Akrab Anggota(Mega Big) [Rp 86.000]',
-                            code: 'XLBIGMEGA',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 93,5GB<br>Area 2 = 96,5GB<br>Area 3 = 107GB<br>Area 4 = 131GB<br>~ official, resmi, bergaransi<br>~ <br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL & AXIS'
-                        },
-                        { 
-                            name: 'Akrab Anggota(Super Big) [Rp 53.000]',
-                            code: 'XLBIGSUPER',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 25-27GB<br>Area 2 = 30-32GB<br>Area 3 = 43-55GB<br>Area 4 = 83-85GB<br>~ official, resmi, bergaransi<br>~ <br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL & AXIS'
-                        },
-                        { 
-                            name: 'Akrab Anggota(Super Mini) [Rp 42.000]',
-                            code: 'XLMINISUPER',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 14.5 - 16.5 GB<br>Area 2 = 17.5 - 19.5 GB<br>Area 3 = 28 - 30 GB GB<br>Area 4 = 52 - 54 GB GB<br>~ official, resmi, bergaransi<br>~ <br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: ''
-                        },
-                        { 
-                            name: 'Akrab Anggota(MINI) [Rp 51.000]',
-                            code: 'XLMINI',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 21 - 32.5 GB<br>Area 2 = 24 - 35.5 GB<br>Area 3 = 32 GB<br>Area 4 = 59 GB<br>~ jika masih ada Akrab,unreg dulu via myxl<br>~ GARANSI 30HARI<br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL/AXIS'
-                        },
-                        { 
-                            name: 'Akrab Anggota(BIG) [Rp 54.000]',
-                            code: 'XLBIG',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 33 GB<br>Area 2 = 35 GB<br>Area 3 = 47 GB<br>Area 4 = 73 GB<br>~ Jka bonus myRewards tidak masuk.. silahkan ajukan komplen setelah 1 x 24 jam.. untuk menghindari delay myXL<br>~ jika bonus myRewards tidak masuk.. akan di refund RP 5.000<br>~ jika masih ada Akrab,unreg dulu via myxl<br>~ GARANSI 30HARI<br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: ''
-                        },
-                        { 
-                            name: 'Akrab Anggota(LITE) [Rp 70.000]',
-                            code: 'XLJUMBOV2',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 47 GB<br>Area 2 = 52 GB<br>Area 3 = 85 GB<br>Area 4 = 105 GB<br>~ Jka bonus myRewards tidak masuk.. silahkan ajukan komplen setelah 1 x 24 jam.. untuk menghindari delay myXL<br>~ jika bonus myRewards tidak masuk.. akan di refund RP 5.000<br>~ jika masih ada Akrab,unreg dulu via myxl<br>~ GARANSI 30HARI<br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: ''
-                        },
-                        { 
-                            name: 'Akrab Anggota(JUMBO) [Rp 78.000]',
-                            code: 'XLJUMBO',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 65 GB<br>Area 2 = 70 GB<br>Area 3 = 83 GB<br>Area 4 = 123 GB<br>~ Jka bonus myRewards tidak masuk.. silahkan ajukan komplen setelah 1 x 24 jam.. untuk menghindari delay myXL<br>~ jika bonus myRewards tidak masuk.. akan di refund RP 5.000<br>~ jika masih ada Akrab,unreg dulu via myxl<br>~ GARANSI 30HARI<br>~ jika terkena kick pengelola lama..orderkan lagi dengan produk bernama REINVITE',
-                            price: ''
-                        },
-                        { 
-                            name: 'Akrab Orderan Fake [Rp 1.000.000]',
-                            code: 'TESAKRAB',
-                            perintah: 'ORDERFAST',
-                            paymentMethods: ['balance'], 
-                            description: 'JANGAN DI ORDER',
-                            price: ''
-                        }
-                    ],
-                    AKRAB_FULL_REGULER_V2: [
-                        { 
-                            name: 'Akrab Anggota(Mini Big) [Rp 39.000]',
-                            code: '8efaf01c-0684-4140-bce2-f8bc26d44aa6',
-                            perintah: 'ORDERCUAN2',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 14.5 - 16.5 GB<br>Area 2 = 17.5 - 19.5 GB<br>Area 3 = 28 - 30 GB GB<br>Area 4 = 52 - 54 GB GB<br>~ official, resmi, bergaransi<br>~ <br>~ Nomor wajib benar<br>~ Masa aktif 28-30hari',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL/AXIS'
-                        },
-                        { 
-                            name: 'Akrab Anggota(Mini Jumbo) [Rp 51.000]',
-                            code: 'a07404db-2428-4d99-95c6-069ee512e515',
-                            perintah: 'ORDERCUAN2',
-                            paymentMethods: ['balance'], 
-                            description: 'Area 1 = 26 GB<br>Area 2 = 31 GB<br>Area 3 = 42 GB GB<br>Area 4 = 82 GB GB<br>~ official, resmi, bergaransi<br>~ <br>~ Nomor wajib benar<br>~ Masa aktif 28-30hari',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL/AXIS'
-                        }
-                    ],
-                    AKRAB_BEKASAN: [
-                        { 
-                            name: 'Akrab Anggota XL(5 hari) - Rp 8.000', 
-                            code: 'XLBEKASAN5',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 1.5 GB<br>AREA 2 = 4.5 GB<br>AREA 3 = 15 GB<br>AREA 4 = 39 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 5 hari (kalo hoki, bisa dapet yang 6 hari)', 
-                            subcategoryDescription: 'PAKET NON OTP BISA XL/AXIS'
-                        },
-                        { 
-                            name: 'Akrab Anggota XL(7 hari) - Rp 11.000', 
-                            code: 'XLBEKASAN7',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 1.5 GB<br>AREA 2 = 4.5 GB<br>AREA 3 = 15 GB<br>AREA 4 = 39 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 7 hari (kalo hoki, bisa dapet yang 8 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XL(9 hari) - Rp 14.000', 
-                            code: 'XLBEKASAN9',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 1.5 GB<br>AREA 2 = 4.5 GB<br>AREA 3 = 15 GB<br>AREA 4 = 39 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 9 hari (kalo hoki, bisa dapet yang 10 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XL(11 hari) - Rp 16.000', 
-                            code: 'XLBEKASAN11',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 1.5 GB<br>AREA 2 = 4.5 GB<br>AREA 3 = 15 GB<br>AREA 4 = 39 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 11 hari (kalo hoki, bisa dapet yang 12 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XL(13 hari) - Rp 18.000', 
-                            code: 'XLBEKASAN13',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 1.5 GB<br>AREA 2 = 4.5 GB<br>AREA 3 = 15 GB<br>AREA 4 = 39 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 13 hari (kalo hoki, bisa dapet yang 14 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XL(15 hari) - Rp 20.000', 
-                            code: 'XLBEKASAN15',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 1.5 GB<br>AREA 2 = 4.5 GB<br>AREA 3 = 15 GB<br>AREA 4 = 39 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 15 hari (kalo hoki, bisa dapet yang 16 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XXL(5 hari) - Rp 11.000', 
-                            code: 'XXLBEKASAN5',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 7.5 GB<br>AREA 2 = 12 GB<br>AREA 3 = 25 GB<br>AREA 4 = 65 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 5 hari (kalo hoki, bisa dapet yang 6 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XXL(7 hari) - Rp 14.000', 
-                            code: 'XXLBEKASAN7',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 7.5 GB<br>AREA 2 = 12 GB<br>AREA 3 = 25 GB<br>AREA 4 = 65 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 7 hari (kalo hoki, bisa dapet yang 8 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XXL(9 hari) - Rp 17.000', 
-                            code: 'XXLBEKASAN9',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 7.5 GB<br>AREA 2 = 12 GB<br>AREA 3 = 25 GB<br>AREA 4 = 65 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 9 hari (kalo hoki, bisa dapet yang 10 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XXL(11 hari) - Rp 19.000', 
-                            code: 'XXLBEKASAN11',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 7.5 GB<br>AREA 2 = 12 GB<br>AREA 3 = 25 GB<br>AREA 4 = 65 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 11 hari (kalo hoki, bisa dapet yang 12 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XXL(13 hari) - Rp 21.000', 
-                            code: 'XXLBEKASAN13',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 7.5 GB<br>AREA 2 = 12 GB<br>AREA 3 = 25 GB<br>AREA 4 = 65 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 13 hari (kalo hoki, bisa dapet yang 14 hari)'
-                        },
-                        { 
-                            name: 'Akrab Anggota XXL(15 hari) - Rp 24.000', 
-                            code: 'XXLBEKASAN15',
-                            perintah: 'ORDERFAST',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br>AREA 1 = 7.5 GB<br>AREA 2 = 12 GB<br>AREA 3 = 25 GB<br>AREA 4 = 65 GB<br>~ Pastikan Nomor BENAR<br>~ Paket full reguler 24jam<br>~ masa aktif paket 15 hari (kalo hoki, bisa dapet yang 16 hari)'
-                        },
-                    ],
-                    AKRAB_BEKASAN_V2: [
-                        { 
-                            name: '⚡ Akrab Bekasan 5-6h [Rp 9.000]',
-                            code: 'BKSAKRABXL',
-                            perintah: 'ORDERCUAN2',
-                            paymentMethods: ['balance'], 
-                            description: 'Area = 1,5 - 7,5 GB<br>~Area 2 = 4,5 - 12 GB<br>~Area 3 = 15 - 25 GB<br>Area 4 = 39 - 65 GB<br>~ NO DRAMA ( Bug pengelola, di kick sendiri, salah nomer, kena Riper/tipu )<br>~ official, resmi<br>~ <br>~ garansi berlaku jika tidak terkena bug apapun<br>~ Masa aktif antara 5-6hari',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL/AXIS'
-                        },
-                        { 
-                            name: '⚡ Akrab Bekasan 7-8h [Rp 12.000]',
-                            code: 'BKSAKRABXL',
-                            perintah: 'ORDERCUAN2',
-                            paymentMethods: ['balance'], 
-                            description: 'Area = 1,5 - 7,5 GB<br>~Area 2 = 4,5 - 12 GB<br>~Area 3 = 15 - 25 GB<br>Area 4 = 39 - 65 GB<br>~ NO DRAMA ( Bug pengelola, di kick sendiri, salah nomer, kena Riper/tipu )<br>~ official, resmi<br>~ <br>~ garansi berlaku jika tidak terkena bug apapun<br>~ Masa aktif antara 7-8hari',
-                            price: '',
-                            subcategoryDescription: 'PAKET NON OTP,<br>BISA UNTUK XL/AXIS'
-                        },
-                    ]
-                }
-            },
-            apk_premium: {
-                subcategories: {
-                    Canva_Pro: [
-                        { 
-                            name: 'Canva PRO (30 hari) - Rp 3.000', 
-                            code: 'CANVAPRO1B',
-                            perintah: 'ORDERMIN2',
-                            price: '', 
-                            paymentMethods: ['balance'], 
-                            description: 'BACA SEBELUM ORDER<br> isi nomor Tujuan dengan gmail yang tertaut canva<br> Berlaku 30hari<br> setelah orderan sukses,cek gmail<br> dan terima undangan nya',
-                            subcategoryDescription: 'CANVA PRO GARANSI'
-                        }
-                    ]
-                }
-            },
-        };
-        const categorySelect = document.getElementById('category');
-const subcategorySelect = document.getElementById('subcategory');
-const productSelect = document.getElementById('product');
-const productDescription = document.getElementById('productDescription');
-const subcategoryDescription = document.getElementById('subcategoryDescription');
-const paymentSection = document.getElementById('paymentSection');
-const paymentList = document.getElementById('paymentList');
-let selectedPaymentMethod = null;
+        // Menelusuri data lokasi dan menampilkannya
+        for (let provinsi in lokasiData) {
+            const areaDiv = document.createElement("div");
+            areaDiv.classList.add("area-section");
 
-const buyNowButton = document.getElementById('buyNowButton');
-const buyPremiumButton = document.getElementById('buyPremiumButton');  // Ambil tombol Beli APK Premium
+            // Menelusuri area dalam setiap provinsi
+            for (let area in lokasiData[provinsi]) {
+                const kabupatenList = lokasiData[provinsi][area];
+                const areaHeader = document.createElement("h2");
+                areaHeader.innerText = `${area} - ${provinsi}`;
+                areaDiv.appendChild(areaHeader);
 
-categorySelect.addEventListener('change', function() {
-    const category = this.value;
-    subcategorySelect.innerHTML = '<option value="">-- Pilih Sub-Kategori --</option>';
-    productSelect.innerHTML = '<option value="">-- Pilih Produk --</option>';
-    productDescription.innerHTML = '';
-    subcategoryDescription.innerHTML = '';
-    paymentSection.style.display = 'none';
+                const areaList = document.createElement("div");
+                areaList.classList.add("area-list");
 
-    if (category && products[category]) {
-        const subcategories = products[category].subcategories;
-        Object.keys(subcategories).forEach(subcategory => {
-            const option = document.createElement('option');
-            option.value = subcategory;
-            option.textContent = subcategory.replace(/_/g, ' ');  // Ganti "_" dengan spasi pada subkategori
-            subcategorySelect.appendChild(option);
-        });
-        subcategorySelect.disabled = false;
-    } else {
-        subcategorySelect.disabled = true;
-    }
+                // Tampilkan kabupaten yang ada di dalam area tersebut
+                kabupatenList.forEach(kabupaten => {
+                    const item = document.createElement("div");
+                    item.classList.add("area-item");
+                    item.innerText = kabupaten;
+                    areaList.appendChild(item);
+                });
 
-    // Logika untuk menampilkan tombol Beli APK Premium jika kategori yang dipilih adalah 'apk_premium'
-    if (category === 'apk_premium') {
-        buyNowButton.style.display = 'none';  // Sembunyikan tombol "Beli Sekarang"
-        buyPremiumButton.style.display = 'inline-block';  // Tampilkan tombol "Beli APK Premium"
-    } else {
-        buyNowButton.style.display = 'inline-block';  // Tampilkan tombol "Beli Sekarang"
-        buyPremiumButton.style.display = 'none';  // Sembunyikan tombol "Beli APK Premium"
-    }
-});
+                areaDiv.appendChild(areaList);
+            }
 
-// Update event listener untuk subkategori dan produk
-subcategorySelect.addEventListener('change', function() {
-    const category = categorySelect.value;
-    const subcategory = this.value;
-    productSelect.innerHTML = '<option value="">-- Pilih Produk --</option>';
-    productDescription.innerHTML = '';
-    subcategoryDescription.innerHTML = '';
-    paymentSection.style.display = 'none';
-
-    if (category && subcategory && products[category]) {
-        const subcategoryProducts = products[category].subcategories[subcategory];
-        subcategoryProducts.forEach(product => {
-            const option = document.createElement('option');
-            option.value = product.code;
-            option.textContent = product.name;
-            productSelect.appendChild(option);
-        });
-
-        // Menampilkan deskripsi subkategori
-        const subcategoryInfo = subcategoryProducts[0].subcategoryDescription;
-        subcategoryDescription.innerHTML = subcategoryInfo;
-        productSelect.disabled = false;
-    } else {
-        productSelect.disabled = true;
-    }
-});
-
-productSelect.addEventListener('change', function() {
-    const category = categorySelect.value;
-    const subcategory = subcategorySelect.value;
-    const productCode = this.value;
-    productDescription.innerHTML = '';
-    subcategoryDescription.innerHTML = '';
-    paymentSection.style.display = 'none';
-
-    if (category && subcategory && productCode && products[category]) {
-        const subcategoryProducts = products[category].subcategories[subcategory];
-        const product = subcategoryProducts.find(p => p.code === productCode);
-        if (product) {
-            // Menghapus bagian yang berhubungan dengan price
-            // productPrice.innerHTML = product.price; // Menghapus baris ini
-            productDescription.innerHTML = product.description;
-            productDescription.style.display = 'block';
-            paymentSection.style.display = 'block';
-            paymentList.innerHTML = '';
-
-            // Menampilkan metode pembayaran
-            product.paymentMethods.forEach(method => {
-                const button = document.createElement('button');
-                button.textContent = method;
-                button.classList.add('payment-button');
-                button.onclick = () => selectPaymentMethod(method, button);
-                paymentList.appendChild(button);
-            });
+            resultDiv.appendChild(areaDiv);
         }
     }
-});
-function selectPaymentMethod(method, button) {
-    selectedPaymentMethod = method;
 
-    // Menghapus kelas 'selected-payment' dari semua tombol
-    document.querySelectorAll('.payment-button').forEach(btn => btn.classList.remove('selected-payment'));
+    function cekArea() {
+        const input = document.getElementById("locationInput").value.trim().toLowerCase();
+        const resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = ""; // Reset hasil pencarian
 
-    // Menambahkan kelas 'selected-payment' ke tombol yang dipilih
-    button.classList.add('selected-payment');
-}
-
-function submitForm() {
-    const category = categorySelect.value;
-    const subcategory = subcategorySelect.value;
-    const productCode = productSelect.value;
-    const phone = document.getElementById('phone').value;
-
-    if (!subcategory || !productCode || !phone || !selectedPaymentMethod) {
-        alert('Mohon lengkapi semua informasi.');
-        return;
-    }
-
-    const selectedProduct = products[category]?.subcategories[subcategory]?.find(product => product.code === productCode);
-    const productName = selectedProduct ? selectedProduct.name : '';
-    const perintah = selectedProduct ? selectedProduct.perintah : '';
-
-    let message;
-
-    // Cek apakah payment method ada
-    if (selectedPaymentMethod !== 'balance') {
-        // Gabungkan parameter dengan titik satu kali, pastikan tidak ada titik ganda
-        message = `${perintah} ${productCode}.${phone}.${selectedPaymentMethod}`;
-    } else {
-        // Jika payment method tidak dipilih, hanya gabungkan perintah, kode produk, dan nomor tujuan
-        message = `${perintah} ${productCode}.${phone}`;
-    }
-
-    const phoneNumber = '6287717272676';  // Ganti dengan nomor WhatsApp yang sesuai
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-    window.open(whatsappURL, '_blank');
-}
-        function redirectToWhatsAppGroup() {
-            const groupLink = "https://chat.whatsapp.com/LLLDMls3vnG6pw1RwEiNb3"; // Ganti dengan link grup WhatsApp kamu
-            window.open(groupLink, '_blank');
+        if (input === "") {
+            tampilkanSemuaLokasi(); // Jika kolom pencarian kosong, tampilkan semua lokasi
+            return;
         }
-        
-    function submitPremiumForm() {
-    const category = categorySelect.value;
-    const subcategory = subcategorySelect.value;
-    const productCode = productSelect.value;
-    const phone = document.getElementById('phone').value;
 
-    if (!subcategory || !productCode || !phone) {
-        alert('Mohon lengkapi semua informasi.');
-        return;
+        let found = false;
+
+        // Menelusuri data lokasi
+        for (let provinsi in lokasiData) {
+            const areaDiv = document.createElement("div");
+            areaDiv.classList.add("area-section");
+
+            let areaFound = false;
+
+            // Menelusuri area dalam setiap provinsi
+            for (let area in lokasiData[provinsi]) {
+                const kabupatenList = lokasiData[provinsi][area];
+
+                // Cek apakah ada kecocokan pada kabupaten atau area
+                const matchingKabupaten = kabupatenList.filter(kabupaten => kabupaten.toLowerCase().includes(input));
+                if (matchingKabupaten.length > 0 || area.toLowerCase().includes(input)) {
+                    areaFound = true;
+                    const areaHeader = document.createElement("h2");
+                    areaHeader.innerText = `${area} - ${provinsi}`;
+                    areaDiv.appendChild(areaHeader);
+
+                    const areaList = document.createElement("div");
+                    areaList.classList.add("area-list");
+
+                    // Tampilkan kabupaten yang cocok
+                    matchingKabupaten.forEach(kabupaten => {
+                        const item = document.createElement("div");
+                        item.classList.add("area-item");
+                        item.innerText = kabupaten;
+                        areaList.appendChild(item);
+                    });
+
+                    areaDiv.appendChild(areaList);
+                }
+            }
+
+            if (areaFound) {
+                resultDiv.appendChild(areaDiv);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            resultDiv.innerHTML = "<div class='no-result'>Lokasi tidak ditemukan, coba dengan nama yang berbeda.</div>";
+        }
+
+        // Scroll ke hasil pencarian
+        if (found) {
+            resultDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
     }
 
-    const selectedProduct = products[category]?.subcategories[subcategory]?.find(product => product.code === productCode);
-    const productName = selectedProduct ? selectedProduct.name : '';
-    const perintah = selectedProduct ? selectedProduct.perintah : '';
+    // Tampilkan semua lokasi saat halaman pertama kali dimuat
+    window.onload = tampilkanSemuaLokasi;
 
-    // Mengubah format message dengan spasi, bukan titik
-    let message = `${perintah} ${productCode} ${phone} ${selectedPaymentMethod}`;
+</script>
 
-    const phoneNumber = '6287717272676';  // Ganti dengan nomor WhatsApp yang sesuai
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-    window.open(whatsappURL, '_blank');
-}
-    </script>
 </body>
 </html>
