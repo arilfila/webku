@@ -653,6 +653,17 @@
                             subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://hijaubiru.my.id/0ff20fd7ccff33e860a1" target="_blank">https://hijaubiru.my.id/0ff20fd7ccff33e860a1</a>'
                         }
                     ],
+                    UNLIMITED_APP_10hari: [
+                        { 
+                            name: 'Unlimited App 10hari - Rp 10.000', 
+                            code: 'UNLI+PREMIUM_10D',
+                            perintah: 'ORDERMIN',
+                            price: '', 
+                            paymentMethods: ['balance'], 
+                            description: 'BACA SEBELUM ORDER<br>~ PAKET NON GARANSI<br>~ tidak boleh ada extra combo plus/spesial<br>~ delay kuota masuk hingga 2jam an<br>~ jika 1x24 jam kuota tidak masuk harap lapor<br>~ kuota tidak full reguler<br>~ Unlimited wa,line,gojek,youtube,instagram,<br>facebook',
+                            subcategoryDescription: 'PAKET NON GARANSI. Harus OTP di <a href="https://verfikasi.my.id/" target="_blank">https://verfikasi.my.id/</a>'
+                        }
+                    ],
                     REGULER_HARIAN: [
                         { 
                             name: '2,8gb 2hari - Rp 4.000', 
@@ -1199,7 +1210,6 @@ productSelect.addEventListener('change', function() {
     const subcategory = subcategorySelect.value;
     const productCode = this.value;
     productDescription.innerHTML = '';
-    subcategoryDescription.innerHTML = '';
     paymentSection.style.display = 'none';
 
     if (category && subcategory && productCode && products[category]) {
@@ -1221,9 +1231,13 @@ productSelect.addEventListener('change', function() {
                 button.onclick = () => selectPaymentMethod(method, button);
                 paymentList.appendChild(button);
             });
+
+            // Pastikan deskripsi subkategori tetap terlihat setelah memilih produk
+            subcategoryDescription.style.display = 'block';
         }
     }
 });
+
 function selectPaymentMethod(method, button) {
     selectedPaymentMethod = method;
 
