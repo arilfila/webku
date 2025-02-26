@@ -271,6 +271,23 @@
         .deposit-button:hover {
             background-color: #99b400;
         }
+        .sidompul-button {
+            background-color: #9354e6;
+            color: rgb(255, 255, 255);
+            font-size: 14px;
+            font-weight: normal;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            width: auto;
+            padding: 6px 15px;
+            border-radius: 20px;
+            text-align: center;
+        }
+    
+        .sidompul-button:hover {
+            background-color: #0d3777;
+        }
 
         .popup {
     display: none; /* Mulanya tersembunyi */
@@ -328,7 +345,9 @@
             <img src="logo.png" alt="SRC STORE Logo" class="logo">
         </div>  
         <button onclick="toggleInfo()">BACA INI!</button>
-        <button class="deposit-button" onclick="window.location.href='deposit.html';">Deposit</button>
+        <button class="sidompul-button" onclick="window.location.href='deposit.html';">Isi Saldo</button>
+        <button class="sidompul-button" onclick="window.open('https://wa.me/6287717272676?text=menu', '_blank');">Cek Saldo</button>
+        <button class="sidompul-button" onclick="window.location.href='cek_kuota.html';">Sidompul Cek kuota</button>
         
         <div class="info-text" id="infoText">
             <p>Ini adalah panel web otomatis berikut cara penggunaannya :<br>1. Masukkan data ke kolom serta pilih kategori dan produknya<br>2. Periksa lagi bahwa data dan produk yang dipilih sudah benar<br>3. Klik BELI untuk membeli produk, nanti akan diarahkan ke WhatsApp<br>4. Setelah di WhatsApp, kirim pesan yang sudah disusun otomatis oleh sistem ke nomor BOT<br>5. Maka pesanan akan diproses otomatis oleh system<br><br>SEMUA PESANAN DIPROSES OLEH SYSTEM ON 24 JAM</p>
