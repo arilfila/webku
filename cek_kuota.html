@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidompul Cek Kuota XL Axis by SRC Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #7a3f99, #4f8fca); /* Gradasi ungu ke biru */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #4CAF50;
+        }
+        h2 {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-top: -10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        input[type="text"] {
+            width: 94%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: center;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #25d366; /* WhatsApp Green */
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #128C7E; /* Darker WhatsApp Green */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Sidompul Cek Kuota XL Axis</h1>
+        <h2>by SRC Store</h2> <!-- Owner Name with smaller font -->
+        <label for="msisdn">Masukkan MSISDN:</label>
+        <input type="text" id="msisdn" placeholder="Contoh: 6287717272676" oninput="validateMSISDN()" />
+        <button onclick="cekKuota()">Cek Kuota</button>
+    </div>
+
+    <script>
+        // Fungsi untuk validasi MSISDN hanya angka
+        function validateMSISDN() {
+            var msisdn = document.getElementById('msisdn').value;
+
+            // Hapus semua karakter yang bukan angka
+            var validMSISDN = msisdn.replace(/[^0-9]/g, '');
+
+            // Set kembali nilai inputan tanpa simbol
+            document.getElementById('msisdn').value = validMSISDN;
+        }
+
+        // Fungsi cek kuota
+        function cekKuota() {
+            var msisdn = document.getElementById('msisdn').value.trim();
+
+            if (msisdn === '') {
+                alert('Mohon masukkan MSISDN yang valid!');
+                return;
+            }
+
+            // Format pesan untuk WhatsApp
+            var pesan = 'cekkuota ' + msisdn;
+
+            // URL WhatsApp dengan format pesan
+            var waUrl = 'https://wa.me/6287717272676?text=' + encodeURIComponent(pesan);
+
+            // Arahkan ke URL WhatsApp
+            window.open(waUrl, '_blank');
+        }
+    </script>
+
+</body>
+</html>
